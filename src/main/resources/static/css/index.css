@@ -1,0 +1,24 @@
+form {
+    position: absolute;
+    top: 23vh;
+    left: calc(25vw - 50px);
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    border: 2px black solid;
+    padding: 50px;
+    align-items: center;
+}
+
+form > div {
+    margin-top: 30px;
+}
+
+.title {
+    margin-top: 10vh;
+    width: 100%;
+}
+
+.title > h2 {
+    text-align: center;
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joel Web Hosting</title>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+<div class="title">
+    <h2>조엘의 웹 호스팅</h2>
+</div>
+<form method="POST" action="http://localhost:8080/page" enctype="multipart/form-data" name="">
+    <div class="htmlInput">
+        <label>HTML 파일을 입력하세요</label>
+        <input type="file" name="files" accept=".html">
+    </div>
+    <div class="cssInput">
+        <label>CSS 파일을 입력하세요</label>
+        <input type="file" name="files" accept=".css" multiple="multiple">
+    </div>
+    <div class="jsInput">
+        <label>JS 파일을 입력하세요</label>
+        <input type="file" name="files" accept=".js" multiple="multiple">
+    </div>
+    <div>
+        <button>만들기</button>
+    </div>
+</form>
+</body>
+</html>
