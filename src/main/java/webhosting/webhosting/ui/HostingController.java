@@ -1,6 +1,8 @@
 package webhosting.webhosting.ui;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,17 +15,14 @@ import java.util.List;
 public class HostingController {
     private HostingService hostingService;
 
-    @PostMapping("/page")
-    public String makeWebPage(@RequestParam("files") List<MultipartFile> files) throws IOException {
-        for (MultipartFile file : files) {
-            System.out.println(file.getName());
-            System.out.println(file.getContentType());
-            System.out.println(file.getOriginalFilename());
-            System.out.println(file.getBytes());
-            System.out.println("------------------------");
-//            hostingService.saveFile(file);
-        }
+    public HostingController(HostingService hostingService) {
+        this.hostingService = hostingService;
+    }
 
-        return "index";
+    @PostMapping("/page")
+    public String makeWebPage(@RequestParam("userId") String userId,
+                              @RequestParam("files") List<MultipartFile> files) throws IOException {
+        hostingService.saveFile(userId, files);
+        return "redirect:/";
     }
 }
