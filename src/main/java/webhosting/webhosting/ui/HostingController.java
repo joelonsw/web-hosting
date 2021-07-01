@@ -1,5 +1,6 @@
 package webhosting.webhosting.ui;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import webhosting.webhosting.service.HostingService;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -21,8 +23,16 @@ public class HostingController {
 
     @PostMapping("/page")
     public String makeWebPage(@RequestParam("userId") String userId,
-                              @RequestParam("files") List<MultipartFile> files) throws IOException {
-        hostingService.saveFile(userId, files);
+                              @RequestParam("htmlFile") MultipartFile htmlFile,
+                              @RequestParam("cssFile") List<MultipartFile> cssFiles,
+                              @RequestParam("jsFile") List<MultipartFile> jsFiles) throws IOException {
+        hostingService.saveFile(userId, htmlFile, cssFiles, jsFiles);
         return "redirect:/";
+    }
+
+    @GetMapping(value = "/page/{userId}", produces = "text/html")
+    public ResponseEntity<String> showUserWebPage(@PathVariable String userId) throws IOException {
+        final String result = hostingService.getUserFile(userId);
+        return ResponseEntity.status(200).body(result);
     }
 }

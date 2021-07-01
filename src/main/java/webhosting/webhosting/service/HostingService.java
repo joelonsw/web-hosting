@@ -1,12 +1,17 @@
 package webhosting.webhosting.service;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import webhosting.webhosting.dao.HostingDao;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Service
@@ -20,17 +25,32 @@ public class HostingService {
     }
 
     @Transactional
-    public void saveFile(String userId, List<MultipartFile> files) throws IOException {
-        for (MultipartFile file : files) {
-            saveSingleFile(userId, file);
+    public void saveFile(String userId, MultipartFile htmlFile,
+                         List<MultipartFile> cssFiles, List<MultipartFile> jsFiles) throws IOException {
+
+        saveSingleFile(userId, htmlFile, "html");
+
+        for (MultipartFile cssFile : cssFiles) {
+            saveSingleFile(userId, cssFile, "css");
+        }
+
+        for (MultipartFile jsFile : jsFiles) {
+            saveSingleFile(userId, jsFile, "js");
         }
     }
 
-    public void saveSingleFile(String userId, MultipartFile file) throws IOException {
+    public void saveSingleFile(String userId, MultipartFile file, String fileType) throws IOException {
         final String originalFilename = file.getOriginalFilename();
         final String filePath = FILE_PATH + originalFilename;
         final File fileToSaveInLocalPC = new File(filePath);
         file.transferTo(fileToSaveInLocalPC);
-        hostingDao.saveFile(userId, filePath);
+        hostingDao.saveFile(userId, filePath, fileType);
+    }
+
+    public String getUserFile(String userId) throws IOException {
+        final String htmlFilePath = hostingDao.getHtmlFilePath(userId);
+        final File htmlFile = new File(htmlFilePath);
+        final Document htmlDocument = Jsoup.parse(htmlFile, "UTF-8");
+        return htmlDocument.outerHtml();
     }
 }

@@ -17,6 +17,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     runtimeOnly 'com.h2database:h2'
+    implementation group: 'org.jsoup', name: 'jsoup', version: '1.13.1'
 }
 
 test {
