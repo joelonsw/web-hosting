@@ -45,10 +45,6 @@ public class HostingService {
         final String originalFilename = file.getOriginalFilename();
         final String filePath = FILE_PATH + originalFilename;
         final File fileToSaveInLocalPC = new File(filePath);
-        Runtime.getRuntime().exec("chmod 777 " + FILE_PATH + fileToSaveInLocalPC);
-        fileToSaveInLocalPC.setExecutable(true, false);
-        fileToSaveInLocalPC.setReadable(true, false);
-        fileToSaveInLocalPC.setWritable(true, false);
         file.transferTo(fileToSaveInLocalPC);
         hostingDao.saveFile(userId, filePath, fileType);
     }
