@@ -1,6 +1,5 @@
 package webhosting.webhosting.service;
 
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Service;
@@ -8,12 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import webhosting.webhosting.dao.HostingDao;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,8 +19,8 @@ import java.util.stream.Stream;
 public class HostingService {
     private HostingDao hostingDao;
 
-    private static String FILE_PATH = "C:\\Users\\joel6\\Desktop\\";
-    private static String SERVER_PATH = "http://localhost:8080/page/";
+    private static String FILE_PATH = "/home/ubuntu/userfile";
+    private static String SERVER_PATH = "http://52.79.235.230/page/";
 
     public HostingService(HostingDao hostingDao) {
         this.hostingDao = hostingDao;
@@ -60,14 +56,14 @@ public class HostingService {
 
         final List<String> cssFilePaths = hostingDao.getCssFilePath(userId);
         for (String cssFilePath : cssFilePaths) {
-            String serverCssPath = SERVER_PATH + userId +  "/" + cssFilePath.substring(FILE_PATH.length());
+            String serverCssPath = SERVER_PATH + userId + "/" + cssFilePath.substring(FILE_PATH.length());
             String html = "<link rel=\"stylesheet\" href=\"" + serverCssPath + "\">";
             htmlDocument.selectFirst("head").child(0).before(html);
         }
 
         final List<String> jsFilePaths = hostingDao.getJsFilePath(userId);
         for (String jsFilePath : jsFilePaths) {
-            String serverJsPath = SERVER_PATH + userId +  "/" + jsFilePath.substring(FILE_PATH.length());
+            String serverJsPath = SERVER_PATH + userId + "/" + jsFilePath.substring(FILE_PATH.length());
             String htmlWithModule = "<script src=\"" + serverJsPath + "\"" + "type=\"module\">";
             htmlDocument.selectFirst("body").child(0).before(htmlWithModule);
             String html = "<script src=\"" + serverJsPath + "\"" + ">";
