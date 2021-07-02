@@ -1,17 +1,68 @@
+html {
+    background-color: whitesmoke;
+}
+
 form {
+    background-color: white;
     position: absolute;
     top: 23vh;
     left: calc(25vw - 50px);
     display: flex;
     flex-direction: column;
     width: 50vw;
-    border: 2px black solid;
     padding: 50px;
     align-items: center;
+    border-radius: 20px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
 }
 
 form > div {
     margin-top: 30px;
+    width: 100%;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+}
+
+label {
+    font-weight: bold;
+    margin-right: 5%;
+    font-size: 15px;
+    width: 45%;
+    margin-left: 13%;
+}
+
+input {
+    width: 100%;
+    outline: none;
+    border: 1px solid lightgray;
+    font-size: 15px;
+    padding: 8px 10px;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    margin-right: 13%;
+}
+
+.submitBtn {
+    width: 100%;
+    font-weight: bold;
+}
+
+.submitBtn > button {
+    width: 74%;
+    margin-left: 13%;
+    height: 45px;
+    outline: none;
+    cursor: pointer;
+    border: 0;
+    background: lightgray;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.submitBtn > button:hover {
+    background-color: silver;
 }
 
 .title {
