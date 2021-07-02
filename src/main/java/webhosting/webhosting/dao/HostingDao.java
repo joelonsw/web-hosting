@@ -22,4 +22,19 @@ public class HostingDao {
         String sql = "SELECT file_path FROM USERFILE where user_id = (?) and file_type = (?)";
         return jdbcTemplate.queryForObject(sql, String.class, userId, "html");
     }
+
+    public List<String> getCssFilePath(String userId) {
+        String sql = "SELECT file_path FROM USERFILE where user_id = (?) and file_type = (?)";
+        return jdbcTemplate.queryForList(sql, String.class, userId, "css");
+    }
+
+    public List<String> getJsFilePath(String userId) {
+        String sql = "SELECT file_path FROM USERFILE where user_id = (?) and file_type = (?)";
+        return jdbcTemplate.queryForList(sql, String.class, userId, "js");
+    }
+
+    public String getResource(String userId, String filePath) {
+        String sql = "SELECT file_path FROM USERFILE where user_id = (?) and file_path = (?)";
+        return jdbcTemplate.queryForObject(sql, String.class, userId, filePath);
+    }
 }
