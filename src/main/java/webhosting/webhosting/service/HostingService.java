@@ -97,7 +97,7 @@ public class HostingService {
 
     private void appendWaterMark(Document htmlDocument) {
         String waterMark =
-                "<div style=\"position: fixed; bottom:0; width: 100%; margin-left: 10px;\">\n" +
+                "<div style=\"position: fixed; bottom:0; width: 100%; margin: 15px;\">\n" +
                 "    <h5>Powered By <a href=\"http://52.79.235.230/\">Joel Web Hosting</a></h5>\n" +
                 "</div>";
         htmlDocument.selectFirst("body").child(0).before(waterMark);
