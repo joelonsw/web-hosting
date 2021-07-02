@@ -13,3 +13,5 @@
     - [x] GET: /page/userId 요청에 사용자의 HTML 페이지 반환하도록 구현
         - [x] 해당 HTML 페이지에 userId에 알맞는 CSS, JS 파일 추가해줌
     - [x] GET: /page/userId/resource 요청에 사용자의 CSS, JS를 반환하도록 구현
+    - [x] 유저 아이디에 따라 페이지 저장 폴더를 만들어주기
+    - [ ] 다 만들어지면 페이지 링크를 알려주기

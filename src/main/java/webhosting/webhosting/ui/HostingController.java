@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import webhosting.webhosting.service.HostingService;
 
-import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -21,28 +20,28 @@ public class HostingController {
         this.hostingService = hostingService;
     }
 
-    @PostMapping("/page")
+    @PostMapping("/pages")
     public String makeWebPage(@RequestParam("userId") String userId,
                               @RequestParam("htmlFile") MultipartFile htmlFile,
                               @RequestParam("cssFile") List<MultipartFile> cssFiles,
-                              @RequestParam("jsFile") List<MultipartFile> jsFiles) throws IOException {
+                              @RequestParam("jsFile") List<MultipartFile> jsFiles) {
         hostingService.saveFile(userId, htmlFile, cssFiles, jsFiles);
         return "redirect:/";
     }
 
-    @GetMapping(value = "/page/{userId}", produces = "text/html")
-    public ResponseEntity<String> showUserWebPage(@PathVariable String userId) throws IOException {
+    @GetMapping(value = "/pages/{userId}", produces = "text/html")
+    public ResponseEntity<String> showUserWebPage(@PathVariable String userId) {
         final String result = hostingService.getUserHtmlFile(userId);
         return ResponseEntity.status(200).body(result);
     }
 
-    @GetMapping(value = "/page/{userId}/{resource}", produces = {"text/css", "application/javascript"})
-    public ResponseEntity<String> getUserResources(@PathVariable String userId, @PathVariable String resource) throws IOException {
+    @GetMapping(value = "/pages/{userId}/{resource}", produces = {"text/css", "application/javascript"})
+    public ResponseEntity<String> getUserResources(@PathVariable String userId, @PathVariable String resource) {
         if (resource.contains(".js")) {
             final String result = hostingService.getUserResource(userId, resource);
-            return ResponseEntity.status(200).contentType(new MediaType("application","javascript")).body(result);
+            return ResponseEntity.status(200).contentType(new MediaType("application", "javascript")).body(result);
         }
         final String result = hostingService.getUserResource(userId, resource);
-        return ResponseEntity.status(200).contentType(new MediaType("text","css")).body(result);
+        return ResponseEntity.status(200).contentType(new MediaType("text", "css")).body(result);
     }
 }

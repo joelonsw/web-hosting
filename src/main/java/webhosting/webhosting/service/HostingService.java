@@ -20,7 +20,7 @@ public class HostingService {
     private HostingDao hostingDao;
 
     private static String FILE_PATH = "/home/ubuntu/userfile/";
-    private static String SERVER_PATH = "http://52.79.235.230/page/";
+    private static String SERVER_PATH = "http://52.79.235.230/pages/";
 
     public HostingService(HostingDao hostingDao) {
         this.hostingDao = hostingDao;
@@ -28,55 +28,78 @@ public class HostingService {
 
     @Transactional
     public void saveFile(String userId, MultipartFile htmlFile,
-                         List<MultipartFile> cssFiles, List<MultipartFile> jsFiles) throws IOException {
-
+                         List<MultipartFile> cssFiles, List<MultipartFile> jsFiles) {
+        makeUserFileFolder(userId);
         saveSingleFile(userId, htmlFile, "html");
-
-        for (MultipartFile cssFile : cssFiles) {
-            saveSingleFile(userId, cssFile, "css");
-        }
-
-        for (MultipartFile jsFile : jsFiles) {
-            saveSingleFile(userId, jsFile, "js");
-        }
+        cssFiles.forEach(cssFile -> saveSingleFile(userId, cssFile, "css"));
+        jsFiles.forEach(jsFile -> saveSingleFile(userId, jsFile, "js"));
     }
 
-    public void saveSingleFile(String userId, MultipartFile file, String fileType) throws IOException {
+    private void makeUserFileFolder(String userId) {
+        String userFileFolderPath = FILE_PATH + userId;
+        File Folder = new File(userFileFolderPath);
+
+        if (Folder.exists()) {
+            Folder.delete();
+            Folder.mkdir();
+            return;
+        }
+
+        Folder.mkdir();
+    }
+
+    public void saveSingleFile(String userId, MultipartFile file, String fileType) {
         final String originalFilename = file.getOriginalFilename();
-        final String filePath = FILE_PATH + originalFilename;
+        final String filePath = FILE_PATH + userId + "/" + originalFilename;
         final File fileToSaveInLocalPC = new File(filePath);
-        file.transferTo(fileToSaveInLocalPC);
-        hostingDao.saveFile(userId, filePath, fileType);
+        try {
+            file.transferTo(fileToSaveInLocalPC);
+            hostingDao.saveFile(userId, filePath, fileType);
+        } catch (IOException e) {
+            throw new RuntimeException("파일 저장에 실패했습니다.");
+        }
     }
 
-    public String getUserHtmlFile(String userId) throws IOException {
+    public String getUserHtmlFile(String userId) {
         final String htmlFilePath = hostingDao.getHtmlFilePath(userId);
         final File htmlFile = new File(htmlFilePath);
-        final Document htmlDocument = Jsoup.parse(htmlFile, "UTF-8");
+        try {
+            final Document htmlDocument = Jsoup.parse(htmlFile, "UTF-8");
+            appendCssTag(userId, htmlDocument);
+            appendJsTag(userId, htmlDocument);
+            return htmlDocument.outerHtml();
+        } catch (IOException e) {
+            throw new RuntimeException("파일 저장에 실패했습니다.");
+        }
+    }
 
+    private void appendCssTag(String userId, Document htmlDocument) {
         final List<String> cssFilePaths = hostingDao.getCssFilePath(userId);
         for (String cssFilePath : cssFilePaths) {
             String serverCssPath = SERVER_PATH + userId + "/" + cssFilePath.substring(FILE_PATH.length());
-            String html = "<link rel=\"stylesheet\" href=\"" + serverCssPath + "\">";
-            htmlDocument.selectFirst("head").child(0).before(html);
+            String CSSHTML = "<link rel=\"stylesheet\" href=\"" + serverCssPath + "\">";
+            htmlDocument.selectFirst("head").child(0).before(CSSHTML);
         }
+    }
 
+    private void appendJsTag(String userId, Document htmlDocument) {
         final List<String> jsFilePaths = hostingDao.getJsFilePath(userId);
         for (String jsFilePath : jsFilePaths) {
             String serverJsPath = SERVER_PATH + userId + "/" + jsFilePath.substring(FILE_PATH.length());
-            String htmlWithModule = "<script src=\"" + serverJsPath + "\"" + "type=\"module\">";
-            htmlDocument.selectFirst("body").child(0).before(htmlWithModule);
-            String html = "<script src=\"" + serverJsPath + "\"" + ">";
-            htmlDocument.selectFirst("body").child(0).before(html);
+            String JSHTML = "<script src=\"" + serverJsPath + "\"" + "type=\"module\">";
+            htmlDocument.selectFirst("body").child(0).before(JSHTML);
+            String JSHTMLwithoutModule = "<script src=\"" + serverJsPath + "\"" + ">";
+            htmlDocument.selectFirst("body").child(0).before(JSHTMLwithoutModule);
         }
-
-        return htmlDocument.outerHtml();
     }
 
-    public String getUserResource(String userId, String resource) throws IOException {
+    public String getUserResource(String userId, String resource) {
         final String filePath = hostingDao.getResource(userId, FILE_PATH + resource);
-        final Stream<String> lines = Files.lines(Paths.get(filePath));
-        final String fileAsString = lines.collect(Collectors.joining(System.lineSeparator()));
-        return fileAsString;
+        try {
+            final Stream<String> lines = Files.lines(Paths.get(filePath));
+            return lines.collect(Collectors.joining(System.lineSeparator()));
+        } catch (IOException e) {
+            throw new RuntimeException("파일 조회에 실패했습니다.");
+        }
     }
 }
