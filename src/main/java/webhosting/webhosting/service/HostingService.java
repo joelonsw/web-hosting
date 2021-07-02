@@ -27,12 +27,13 @@ public class HostingService {
     }
 
     @Transactional
-    public void saveFile(String userId, MultipartFile htmlFile,
+    public String saveFile(String userId, MultipartFile htmlFile,
                          List<MultipartFile> cssFiles, List<MultipartFile> jsFiles) {
         makeUserFileFolder(userId);
         saveSingleFile(userId, htmlFile, "html");
         cssFiles.forEach(cssFile -> saveSingleFile(userId, cssFile, "css"));
         jsFiles.forEach(jsFile -> saveSingleFile(userId, jsFile, "js"));
+        return SERVER_PATH + userId;
     }
 
     private void makeUserFileFolder(String userId) {
@@ -67,6 +68,7 @@ public class HostingService {
             final Document htmlDocument = Jsoup.parse(htmlFile, "UTF-8");
             appendCssTag(userId, htmlDocument);
             appendJsTag(userId, htmlDocument);
+            appendWaterMark(htmlDocument);
             return htmlDocument.outerHtml();
         } catch (IOException e) {
             throw new RuntimeException("파일 저장에 실패했습니다.");
@@ -91,6 +93,14 @@ public class HostingService {
             String JSHTMLwithoutModule = "<script src=\"" + serverJsPath + "\"" + ">";
             htmlDocument.selectFirst("body").child(0).before(JSHTMLwithoutModule);
         }
+    }
+
+    private void appendWaterMark(Document htmlDocument) {
+        String waterMark =
+                "<div style=\"position: fixed; bottom:0; width: 100%; margin-left: 10px;\">\n" +
+                "    <h5>Powered By <a href=\"http://52.79.235.230/\">Joel Web Hosting</a></h5>\n" +
+                "</div>";
+        htmlDocument.selectFirst("body").child(0).before(waterMark);
     }
 
     public String getUserResource(String userId, String resource) {

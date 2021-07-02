@@ -25,8 +25,8 @@ public class HostingController {
                               @RequestParam("htmlFile") MultipartFile htmlFile,
                               @RequestParam("cssFile") List<MultipartFile> cssFiles,
                               @RequestParam("jsFile") List<MultipartFile> jsFiles) {
-        hostingService.saveFile(userId, htmlFile, cssFiles, jsFiles);
-        return "redirect:/";
+        String deployedUrl = hostingService.saveFile(userId, htmlFile, cssFiles, jsFiles);
+        return "redirect:" + deployedUrl;
     }
 
     @GetMapping(value = "/pages/{userId}", produces = "text/html")
