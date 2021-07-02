@@ -76,7 +76,7 @@ public class HostingService {
     private void appendCssTag(String userId, Document htmlDocument) {
         final List<String> cssFilePaths = hostingDao.getCssFilePath(userId);
         for (String cssFilePath : cssFilePaths) {
-            String serverCssPath = SERVER_PATH + userId + "/" + cssFilePath.substring(FILE_PATH.length());
+            String serverCssPath = SERVER_PATH + cssFilePath.substring(FILE_PATH.length());
             String CSSHTML = "<link rel=\"stylesheet\" href=\"" + serverCssPath + "\">";
             htmlDocument.selectFirst("head").child(0).before(CSSHTML);
         }
@@ -85,7 +85,7 @@ public class HostingService {
     private void appendJsTag(String userId, Document htmlDocument) {
         final List<String> jsFilePaths = hostingDao.getJsFilePath(userId);
         for (String jsFilePath : jsFilePaths) {
-            String serverJsPath = SERVER_PATH + userId + "/" + jsFilePath.substring(FILE_PATH.length());
+            String serverJsPath = SERVER_PATH + jsFilePath.substring(FILE_PATH.length());
             String JSHTML = "<script src=\"" + serverJsPath + "\"" + "type=\"module\">";
             htmlDocument.selectFirst("body").child(0).before(JSHTML);
             String JSHTMLwithoutModule = "<script src=\"" + serverJsPath + "\"" + ">";
@@ -94,7 +94,7 @@ public class HostingService {
     }
 
     public String getUserResource(String userId, String resource) {
-        final String filePath = hostingDao.getResource(userId, FILE_PATH + resource);
+        final String filePath = hostingDao.getResource(userId, FILE_PATH + userId + "/" + resource);
         try {
             final Stream<String> lines = Files.lines(Paths.get(filePath));
             return lines.collect(Collectors.joining(System.lineSeparator()));
