@@ -19,7 +19,7 @@ import java.util.stream.Stream;
 public class HostingService {
     private HostingDao hostingDao;
 
-    private static String FILE_PATH = "/home/ubuntu/userfile";
+    private static String FILE_PATH = "/home/ubuntu/userfile/";
     private static String SERVER_PATH = "http://52.79.235.230/page/";
 
     public HostingService(HostingDao hostingDao) {
