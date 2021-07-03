@@ -43,6 +43,7 @@ public class HostingService {
         if (Folder.exists()) {
             Folder.delete();
             Folder.mkdir();
+            hostingDao.deleteFiles(userId);
             return;
         }
 

@@ -37,4 +37,9 @@ public class HostingDao {
         String sql = "SELECT file_path FROM USERFILE where user_id = (?) and file_path = (?)";
         return jdbcTemplate.queryForObject(sql, String.class, userId, filePath);
     }
+
+    public void deleteFiles(String userId) {
+        String sql = "DELETE * FROM USERFILE where user_id = (?)";
+        jdbcTemplate.update(sql, userId);
+    }
 }
