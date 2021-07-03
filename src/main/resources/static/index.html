@@ -11,26 +11,27 @@
 <div class="title">
     <h2>🎁 조엘의 웹 호스팅 🎁</h2>
 </div>
-<form method="POST" action="http://joel-web-hosting.o-r.kr/pages" enctype="multipart/form-data" name="">
+<form method="POST" action="http://joel-web-hosting.o-r.kr/pages" enctype="multipart/form-data" name="" onsubmit="return checkUpload()">
     <div class="userIdInput">
         <label>유저 ID 입력하기</label>
         <input type="text" name="userId">
     </div>
     <div class="htmlInput">
         <label>HTML 파일 첨부하기</label>
-        <input type="file" name="htmlFile" accept=".html">
+        <input id="html-input-tag" type="file" name="htmlFile" accept=".html" onchange="HTMLSelected(this)">
     </div>
     <div class="cssInput">
-        <label>CSS 파일 첨부하기</label>
-        <input type="file" name="cssFile" accept=".css" multiple="multiple">
+        <label>CSS 파일을 첨부하기</label>
+        <input id="css-input-tag" type="file" name="cssFile" accept=".css" multiple="multiple" onchange="CSSSelected(this)">
     </div>
     <div class="jsInput">
-        <label>JS 파일 첨부하기</label>
-        <input type="file" name="jsFile" accept=".js" multiple="multiple">
+        <label>JS 파일을 첨부하기</label>
+        <input id="js-input-tag" type="file" name="jsFile" accept=".js" multiple="multiple" onchange="JSSelected(this)">
     </div>
     <div class="submitBtn">
-        <button>업로드</button>
+        <button class="uploadBtn">업로드</button>
     </div>
+    <script src="/js/index.js"></script>
 </form>
 </body>
 </html>
