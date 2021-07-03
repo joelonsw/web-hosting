@@ -37,11 +37,10 @@ public class HostingController {
 
     @GetMapping(value = "/pages/{userId}/{resource}", produces = {"text/css", "application/javascript"})
     public ResponseEntity<String> getUserResources(@PathVariable String userId, @PathVariable String resource) {
+        final String result = hostingService.getUserResource(userId, resource);
         if (resource.contains(".js")) {
-            final String result = hostingService.getUserResource(userId, resource);
             return ResponseEntity.status(200).contentType(new MediaType("application", "javascript")).body(result);
         }
-        final String result = hostingService.getUserResource(userId, resource);
         return ResponseEntity.status(200).contentType(new MediaType("text", "css")).body(result);
     }
 }
