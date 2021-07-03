@@ -13,12 +13,12 @@
 </div>
 <form method="POST" action="http://joel-web-hosting.o-r.kr/pages" enctype="multipart/form-data" name="" onsubmit="return checkUpload()">
     <div class="userIdInput">
-        <label>유저 ID 입력하기</label>
-        <input type="text" name="userId">
+        <label>유저 ID 입력하기 (*) </label>
+        <input id="user-id" type="text" name="userId" required>
     </div>
     <div class="htmlInput">
-        <label>HTML 파일 첨부하기</label>
-        <input id="html-input-tag" type="file" name="htmlFile" accept=".html" onchange="HTMLSelected(this)">
+        <label>HTML 파일 첨부하기 (*) </label>
+        <input id="html-input-tag" type="file" name="htmlFile" accept=".html" onchange="HTMLSelected(this)" required>
     </div>
     <div class="cssInput">
         <label>CSS 파일을 첨부하기</label>

@@ -23,8 +23,8 @@ public class HostingController {
     @PostMapping("/pages")
     public String makeWebPage(@RequestParam("userId") String userId,
                               @RequestParam("htmlFile") MultipartFile htmlFile,
-                              @RequestParam("cssFile") List<MultipartFile> cssFiles,
-                              @RequestParam("jsFile") List<MultipartFile> jsFiles) {
+                              @RequestParam(value = "cssFile", required = false) List<MultipartFile> cssFiles,
+                              @RequestParam(value = "jsFile", required = false) List<MultipartFile> jsFiles) {
         String deployedUrl = hostingService.saveFile(userId, htmlFile, cssFiles, jsFiles);
         return "redirect:" + deployedUrl;
     }

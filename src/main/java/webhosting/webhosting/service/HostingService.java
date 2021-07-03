@@ -20,7 +20,10 @@ public class HostingService {
     private HostingDao hostingDao;
 
     private static String FILE_PATH = "/home/ubuntu/userfile/";
+    private static String FILE_PATH_TEST = "C:\\Users\\joel6\\Desktop\\";
+
     private static String SERVER_PATH = "http://joel-web-hosting.o-r.kr/pages/";
+    private static String SERVER_PATH_TEST = "http://localhost:8080/pages/";
 
     public HostingService(HostingDao hostingDao) {
         this.hostingDao = hostingDao;
@@ -31,8 +34,12 @@ public class HostingService {
                          List<MultipartFile> cssFiles, List<MultipartFile> jsFiles) {
         makeUserFileFolder(userId);
         saveSingleFile(userId, htmlFile, "html");
-        cssFiles.forEach(cssFile -> saveSingleFile(userId, cssFile, "css"));
-        jsFiles.forEach(jsFile -> saveSingleFile(userId, jsFile, "js"));
+        for (MultipartFile cssFile : cssFiles) {
+            saveSingleFile(userId, cssFile, "css");
+        }
+        for (MultipartFile jsFile : jsFiles) {
+            saveSingleFile(userId, jsFile, "js");
+        }
         return SERVER_PATH + userId;
     }
 
@@ -52,6 +59,10 @@ public class HostingService {
 
     public void saveSingleFile(String userId, MultipartFile file, String fileType) {
         final String originalFilename = file.getOriginalFilename();
+        if (originalFilename.length() == 0) {
+            return;
+        }
+
         final String filePath = FILE_PATH + userId + "/" + originalFilename;
         final File fileToSaveInLocalPC = new File(filePath);
         try {
