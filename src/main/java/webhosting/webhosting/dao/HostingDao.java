@@ -39,7 +39,7 @@ public class HostingDao {
     }
 
     public void deleteFiles(String userId) {
-        String sql = "DELETE * FROM USERFILE where user_id = (?)";
+        String sql = "DELETE FROM USERFILE where user_id = (?)";
         jdbcTemplate.update(sql, userId);
     }
 }
