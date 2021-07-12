@@ -18,8 +18,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     runtimeOnly 'com.h2database:h2'
     implementation group: 'org.jsoup', name: 'jsoup', version: '1.13.1'
-    runtimeOnly 'mysql:mysql-connector-java'
     implementation 'net.rakugakibox.spring.boot:logback-access-spring-boot-starter:2.7.1'
+    implementation("org.mariadb.jdbc:mariadb-java-client:2.1.2")
 }
 
 test {
