@@ -19,6 +19,7 @@ dependencies {
     runtimeOnly 'com.h2database:h2'
     implementation group: 'org.jsoup', name: 'jsoup', version: '1.13.1'
     runtimeOnly 'mysql:mysql-connector-java'
+    implementation 'net.rakugakibox.spring.boot:logback-access-spring-boot-starter:2.7.1'
 }
 
 test {
