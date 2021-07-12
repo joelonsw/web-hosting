@@ -22,7 +22,7 @@ public class HostingService {
     private static String FILE_PATH = "/home/ubuntu/userfile/";
     private static String FILE_PATH_TEST = "C:\\Users\\joel6\\Desktop\\";
 
-    private static String SERVER_PATH = "http://joel-web-hosting.o-r.kr/pages/";
+    private static String SERVER_PATH = "https://joel-web-hosting.o-r.kr/pages/";
     private static String SERVER_PATH_TEST = "http://localhost:8080/pages/";
 
     public HostingService(HostingDao hostingDao) {
@@ -110,7 +110,7 @@ public class HostingService {
     private void appendWaterMark(Document htmlDocument) {
         String waterMark =
                 "<div style=\"position: fixed; bottom:0; width: 100%; margin: 15px;\">\n" +
-                "    <h5>Powered By <a href=\"http://joel-web-hosting.o-r.kr/\">Joel Web Hosting</a></h5>\n" +
+                "    <h5>Powered By <a href=\"https://joel-web-hosting.o-r.kr/\">Joel Web Hosting</a></h5>\n" +
                 "</div>";
         htmlDocument.selectFirst("body").child(0).before(waterMark);
     }
