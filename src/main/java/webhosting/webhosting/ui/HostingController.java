@@ -20,6 +20,16 @@ public class HostingController {
         this.hostingService = hostingService;
     }
 
+    @GetMapping("/login")
+    public String loginPage() {
+        return "login.html";
+    }
+
+    @GetMapping("/deploy")
+    public String deployPage() {
+        return "deploy.html";
+    }
+
     @PostMapping("/pages")
     public String makeWebPage(@RequestParam("userId") String userId,
                               @RequestParam("htmlFile") MultipartFile htmlFile,

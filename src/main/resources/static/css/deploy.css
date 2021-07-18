@@ -1,31 +1,32 @@
-html {
-    background-color: whitesmoke;
+.form {
+    padding: 50px 29%;
 }
 
 form {
     background-color: white;
-    position: absolute;
-    top: 23vh;
-    left: calc(25vw - 50px);
     display: flex;
     flex-direction: column;
-    width: 50vw;
-    padding: 50px;
     align-items: center;
-    border-radius: 20px;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 50px;
+    border: 5px solid #d6d2d0;
+}
+
+form > h3 {
+    margin: 40px 0;
+    color: #3A3532;
 }
 
 form > div {
     margin-top: 30px;
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
     display: flex;
     align-items: center;
 }
 
 label {
     font-weight: bold;
+    color: #6E686A;
     margin-right: 5%;
     font-size: 15px;
     width: 45%;
@@ -33,9 +34,10 @@ label {
 }
 
 input {
-    width: 100%;
+    width: 65%;
     outline: none;
-    border: 1px solid lightgray;
+    border: 1px solid #785658;
+    border-radius: 50px;
     font-size: 15px;
     padding: 8px 10px;
     border-radius: 3px;
@@ -51,25 +53,19 @@ input {
 .submitBtn > button {
     width: 74%;
     margin-left: 13%;
+    margin-bottom: 15px;
     height: 45px;
     outline: none;
     cursor: pointer;
     border: 0;
-    background: lightgray;
+    background-color: #3A3532;
+    color: white;
     font-size: 15px;
     font-weight: bold;
-    border-radius: 8px;
+    border-radius: 50px;
 }
 
 .submitBtn > button:hover {
-    background-color: silver;
-}
-
-.title {
-    margin-top: 10vh;
-    width: 100%;
-}
-
-.title > h2 {
-    text-align: center;
+    background-color: #785658;
+    color: white;
 }

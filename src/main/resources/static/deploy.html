@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joel's Web Hosting</title>
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/deploy.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <a href="/" class="logo">
+            <img src="/image/joel-web-hosting.svg" alt="logo" class="logo">
+        </a>
+        <nav>
+            <ul class="navbar-links">
+                <li><a href="https://github.com/PapimonLikelion/web-hosting">GITHUB</a></li>
+                <li><a href="/deploy">DEPLOY</a></li>
+            </ul>
+        </nav>
+        <a href="/login"><button>LOGIN</button></a>
+    </header>
+    <div class="form">
+        <form method="POST" action="#" enctype="multipart/form-data" name="" onsubmit="return checkUpload()">
+            <h3>FILES TO DEPLOY</h3>
+            <div class="htmlInput">
+                <label>Attach a Single HTML file (*) </label>
+                <input id="html-input-tag" type="file" name="htmlFile" accept=".html" onchange="HTMLSelected(this)" required>
+            </div>
+            <div class="cssInput">
+                <label>Attach Mulitple CSS files</label>
+                <input id="css-input-tag" type="file" name="cssFile" accept=".css" multiple="multiple" onchange="CSSSelected(this)">
+            </div>
+            <div class="jsInput">
+                <label>Attach Mulitple JS files</label>
+                <input id="js-input-tag" type="file" name="jsFile" accept=".js" multiple="multiple" onchange="JSSelected(this)">
+            </div>
+            <div class="submitBtn">
+                <button class="uploadBtn">Upload</button>
+            </div>
+            <script src="js/deploy.js"></script>
+        </form>
+    </div>
+</body>
+</html>

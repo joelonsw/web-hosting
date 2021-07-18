@@ -4,34 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joel Web Hosting</title>
-    <link rel="stylesheet" href="/css/index.css">
+    <title>Joel's Web Hosting</title>
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-<div class="title">
-    <h2>🎁 조엘의 웹 호스팅 🎁</h2>
-</div>
-<form method="POST" action="https://joel-web-hosting.o-r.kr/pages" enctype="multipart/form-data" name="" onsubmit="return checkUpload()">
-    <div class="userIdInput">
-        <label>유저 ID 입력하기 (*) </label>
-        <input id="user-id" type="text" name="userId" required>
+    <header class="navbar">
+        <a href="/" class="logo">
+            <img src="/image/joel-web-hosting.svg" alt="logo" class="logo">
+        </a>
+        <nav>
+            <ul class="navbar-links">
+                <li><a href="https://github.com/PapimonLikelion/web-hosting">GITHUB</a></li>
+                <li><a href="/deploy">DEPLOY</a></li>
+            </ul>
+        </nav>
+        <a href="/login"><button>LOGIN</button></a>
+    </header>
+    <div class="body">
+        <div class="explanation">
+            <h1>Your First Website For Free!</h1>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe quia exercitationem eum rem iusto quidem ex vero, dignissimos soluta obcaecati incidunt, repudiandae deserunt ullam maiores possimus. Magni doloribus minima reprehenderit.</p>
+            <button><a href="/deploy">DEPLOY</a></button>
+        </div>
+        <div class="tree">
+            <img src="/image/website.png" alt="">
+        </div>
     </div>
-    <div class="htmlInput">
-        <label>HTML 파일 첨부하기 (*) </label>
-        <input id="html-input-tag" type="file" name="htmlFile" accept=".html" onchange="HTMLSelected(this)" required>
-    </div>
-    <div class="cssInput">
-        <label>CSS 파일을 첨부하기</label>
-        <input id="css-input-tag" type="file" name="cssFile" accept=".css" multiple="multiple" onchange="CSSSelected(this)">
-    </div>
-    <div class="jsInput">
-        <label>JS 파일을 첨부하기</label>
-        <input id="js-input-tag" type="file" name="jsFile" accept=".js" multiple="multiple" onchange="JSSelected(this)">
-    </div>
-    <div class="submitBtn">
-        <button class="uploadBtn">업로드</button>
-    </div>
-    <script src="/js/index.js"></script>
-</form>
 </body>
 </html>
