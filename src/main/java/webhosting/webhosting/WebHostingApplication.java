@@ -9,5 +9,4 @@ public class WebHostingApplication {
     public static void main(String[] args) {
         SpringApplication.run(WebHostingApplication.class, args);
     }
-
 }

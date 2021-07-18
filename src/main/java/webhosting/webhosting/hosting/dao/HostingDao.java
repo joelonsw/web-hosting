@@ -1,4 +1,4 @@
-package webhosting.webhosting.dao;
+package webhosting.webhosting.hosting.dao;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

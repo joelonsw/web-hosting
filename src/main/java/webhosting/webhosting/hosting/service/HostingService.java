@@ -1,11 +1,11 @@
-package webhosting.webhosting.service;
+package webhosting.webhosting.hosting.service;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-import webhosting.webhosting.dao.HostingDao;
+import webhosting.webhosting.hosting.dao.HostingDao;
 
 import java.io.File;
 import java.io.IOException;

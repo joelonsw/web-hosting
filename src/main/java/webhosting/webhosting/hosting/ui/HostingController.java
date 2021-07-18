@@ -1,4 +1,4 @@
-package webhosting.webhosting.ui;
+package webhosting.webhosting.hosting.ui;
 
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import webhosting.webhosting.service.HostingService;
+import webhosting.webhosting.hosting.service.HostingService;
 
 import java.util.List;
 
@@ -18,11 +18,6 @@ public class HostingController {
 
     public HostingController(HostingService hostingService) {
         this.hostingService = hostingService;
-    }
-
-    @GetMapping("/login")
-    public String loginPage() {
-        return "login.html";
     }
 
     @GetMapping("/deploy")
