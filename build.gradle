@@ -19,14 +19,26 @@ repositories {
 }
 
 dependencies {
+    //spring
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    //jwt
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+
+    //DB
     runtimeOnly 'com.h2database:h2'
-    implementation group: 'org.jsoup', name: 'jsoup', version: '1.13.1'
-    implementation 'net.rakugakibox.spring.boot:logback-access-spring-boot-starter:2.7.1'
     implementation("org.mariadb.jdbc:mariadb-java-client:2.1.2")
 
+    //Logging
+    implementation 'net.rakugakibox.spring.boot:logback-access-spring-boot-starter:2.7.1'
+
+    //HTML Parser
+    implementation group: 'org.jsoup', name: 'jsoup', version: '1.13.1'
+
+    //lombok
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 }
