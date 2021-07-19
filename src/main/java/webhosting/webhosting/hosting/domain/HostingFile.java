@@ -14,7 +14,8 @@ public class HostingFile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "fk_user")
     private User user;
 
     @Column(nullable = false)
