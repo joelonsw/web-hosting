@@ -12,6 +12,8 @@ import webhosting.webhosting.login.domain.UserRepository;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -43,7 +45,12 @@ public class HostingService {
         saveFile(user, htmlFile, FileType.HTML);
         cssFiles.forEach(cssFile -> saveFile(user, cssFile, FileType.CSS));
         jsFiles.forEach(jsFile -> saveFile(user, jsFile, FileType.JS));
-        return serverPath + user.getName();
+        try {
+            final String encodedUserName = URLEncoder.encode(user.getName(), "UTF-8");
+            return serverPath + encodedUserName;
+        } catch (UnsupportedEncodingException e) {
+            throw new IllegalStateException("유저 이름 인코딩 실패!");
+        }
     }
 
     private void makeUserFolder(User user) {

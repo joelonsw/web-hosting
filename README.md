@@ -22,6 +22,13 @@
     - [x] GET: /page/userId/resource 요청에 사용자의 CSS, JS를 반환하도록 구현
     - [x] 유저 아이디에 따라 페이지 저장 폴더를 만들어주기
     - [x] 다 만들어지면 페이지 링크를 알려주기
+- [ ] OAuth 구현하기
+    - [ ] Google
+    - [ ] Facebook
+    - [ ] Github
+- [x] JPA 전환하기
+    - [x] HostingFile
+    - [x] User
 
 ### ✂ 리팩토링 중점 사안
 - [x] HTML만 필수! CSS와 JS 코드는 Optional로 저장토록 수정
