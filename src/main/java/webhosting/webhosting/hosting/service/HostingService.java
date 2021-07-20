@@ -7,6 +7,9 @@ import org.springframework.web.multipart.MultipartFile;
 import webhosting.webhosting.hosting.domain.FileType;
 import webhosting.webhosting.hosting.domain.HostingFile;
 import webhosting.webhosting.hosting.domain.HostingFileRepository;
+import webhosting.webhosting.hosting.exception.FileReadException;
+import webhosting.webhosting.hosting.exception.FileSaveException;
+import webhosting.webhosting.hosting.exception.UserNameEncodingException;
 import webhosting.webhosting.login.domain.User;
 import webhosting.webhosting.login.domain.UserRepository;
 
@@ -49,7 +52,7 @@ public class HostingService {
             final String encodedUserName = URLEncoder.encode(user.getName(), "UTF-8");
             return serverPath + encodedUserName;
         } catch (UnsupportedEncodingException e) {
-            throw new IllegalStateException("유저 이름 인코딩 실패!");
+            throw new UserNameEncodingException("유저 이름 인코딩 실패!");
         }
     }
 
@@ -76,7 +79,7 @@ public class HostingService {
             file.transferTo(localFile);
             hostingFileRepository.save(new HostingFile(user, userFilePath, fileType));
         } catch (IOException e) {
-            throw new RuntimeException(fileType.name() + " 파일 저장에 실패했습니다.");
+            throw new FileSaveException(fileType.name() + " 파일 저장에 실패했습니다.");
         }
     }
 
@@ -99,7 +102,7 @@ public class HostingService {
             final Stream<String> lines = Files.lines(Paths.get(hostingFile.getFilePath()));
             return lines.collect(Collectors.joining(System.lineSeparator()));
         } catch (IOException e) {
-            throw new RuntimeException("파일 조회에 실패했습니다.");
+            throw new FileReadException("파일 조회에 실패했습니다.");
         }
     }
 }

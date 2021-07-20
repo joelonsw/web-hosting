@@ -7,6 +7,7 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import webhosting.webhosting.login.domain.User;
+import webhosting.webhosting.login.exception.GoogleUserGenerationException;
 import webhosting.webhosting.login.util.GoogleAccessToken;
 import webhosting.webhosting.login.util.GoogleUserInfo;
 
@@ -72,7 +73,7 @@ public class GoogleLoginService {
             final GoogleUserInfo googleUserInfo = objectMapper.readValue(userInfo, GoogleUserInfo.class);
             return new User(googleUserInfo.getName(), googleUserInfo.getPicture());
         } catch (JsonProcessingException e) {
-            throw new IllegalArgumentException(e.getMessage());
+            throw new GoogleUserGenerationException(e.getMessage());
         }
     }
 

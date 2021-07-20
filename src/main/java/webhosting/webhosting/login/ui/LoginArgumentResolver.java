@@ -9,9 +9,11 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 import webhosting.webhosting.login.domain.LoginPrincipal;
 import webhosting.webhosting.login.domain.User;
 import webhosting.webhosting.login.domain.UserRepository;
+import webhosting.webhosting.login.exception.NotLoggedInException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Objects;
 
 @AllArgsConstructor
 public class LoginArgumentResolver implements HandlerMethodArgumentResolver {
@@ -28,7 +30,10 @@ public class LoginArgumentResolver implements HandlerMethodArgumentResolver {
                                 NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
         HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
         HttpSession session = request.getSession();
-        String userName = (String) session.getAttribute("name");
-        return userRepository.findByName(userName);
+        Object userName = session.getAttribute("name");
+        if (Objects.isNull(userName)) {
+            throw new NotLoggedInException("로그인 사용자가 없습니다.");
+        }
+        return userRepository.findByName((String)userName);
     }
 }

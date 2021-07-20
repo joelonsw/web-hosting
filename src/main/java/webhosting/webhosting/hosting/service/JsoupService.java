@@ -5,6 +5,7 @@ import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import webhosting.webhosting.hosting.domain.HostingFile;
+import webhosting.webhosting.hosting.exception.FileReadException;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,7 +28,7 @@ public class JsoupService {
             appendWaterMark(htmlDocument);
             return htmlDocument.outerHtml();
         } catch (IOException e) {
-            throw new RuntimeException("파일 조회에 실패했습니다.");
+            throw new FileReadException("파일 조회에 실패했습니다.");
         }
     }
 
