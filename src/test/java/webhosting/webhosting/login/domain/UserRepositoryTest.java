@@ -3,6 +3,7 @@ package webhosting.webhosting.login.domain;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import webhosting.webhosting.login.exception.NotLoggedInException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -19,7 +20,8 @@ class UserRepositoryTest {
         userRepository.save(user1);
 
         //when then
-        final User saved = userRepository.findByName("user1");
+        final User saved = userRepository.findByName("user1")
+                .orElseThrow(NotLoggedInException::new);
         assertThat(saved).isEqualTo(user1);
     }
 }

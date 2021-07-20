@@ -34,6 +34,7 @@ public class LoginArgumentResolver implements HandlerMethodArgumentResolver {
         if (Objects.isNull(userName)) {
             throw new NotLoggedInException("로그인 사용자가 없습니다.");
         }
-        return userRepository.findByName((String)userName);
+        return userRepository.findByName((String)userName)
+                .orElseThrow(NotLoggedInException::new);
     }
 }

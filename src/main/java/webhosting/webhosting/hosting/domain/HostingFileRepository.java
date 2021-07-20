@@ -4,10 +4,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import webhosting.webhosting.login.domain.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface HostingFileRepository extends JpaRepository<HostingFile, Long> {
     void deleteAllByUser(User user);
-    List<HostingFile> findByUser(User user);
-    List<HostingFile> findByUserAndFileType(User user, FileType fileType);
-    HostingFile findByUserAndFilePath(User user, String filePath);
+    Optional<List<HostingFile>> findByUser(User user);
+    Optional<List<HostingFile>> findByUserAndFileType(User user, FileType fileType);
+    Optional<HostingFile> findByUserAndFilePath(User user, String filePath);
 }

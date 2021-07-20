@@ -8,6 +8,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import webhosting.webhosting.login.domain.User;
 import webhosting.webhosting.login.domain.UserRepository;
+import webhosting.webhosting.login.exception.NotLoggedInException;
 
 import java.util.List;
 
@@ -44,26 +45,29 @@ class HostingFileRepositoryTest {
     @DisplayName("user가 업로드한 hostingFile들을 지울 수 있다.")
     @Test
     void deleteAllByUser() {
-        final User user = userRepository.findByName("user");
+        final User user = userRepository.findByName("user")
+                .orElseThrow(NotLoggedInException::new);
         hostingFileRepository.deleteAllByUser(user);
 
-        final List<HostingFile> hostingFiles = hostingFileRepository.findByUser(user);
+        final List<HostingFile> hostingFiles = hostingFileRepository.findByUser(user).orElseThrow(() -> new IllegalStateException());
         assertThat(hostingFiles).hasSize(0);
     }
 
     @DisplayName("user가 업로드한 파일을 User로 찾아올 수 있다.")
     @Test
     void findByUser() {
-        final User user = userRepository.findByName("user");
-        final List<HostingFile> hostingFiles = hostingFileRepository.findByUser(user);
+        final User user = userRepository.findByName("user")
+                .orElseThrow(NotLoggedInException::new);
+        final List<HostingFile> hostingFiles = hostingFileRepository.findByUser(user).orElseThrow(() -> new IllegalStateException());
         assertThat(hostingFiles).hasSize(7);
     }
 
     @DisplayName("user가 업로드한 파일을 User와 FileType으로 찾아올 수 있다.")
     @Test
     void findByUserAndFileType() {
-        final User user = userRepository.findByName("user");
-        final List<HostingFile> cssFiles = hostingFileRepository.findByUserAndFileType(user, FileType.CSS);
+        final User user = userRepository.findByName("user")
+                .orElseThrow(NotLoggedInException::new);
+        final List<HostingFile> cssFiles = hostingFileRepository.findByUserAndFileType(user, FileType.CSS).orElseThrow(() -> new IllegalStateException());
         assertThat(cssFiles).hasSize(2);
     }
 
@@ -72,8 +76,9 @@ class HostingFileRepositoryTest {
     void findByUserAndFilePath() {
         String cssFilePath = "CSSFilePath1";
 
-        final User user = userRepository.findByName("user");
-        final HostingFile file = hostingFileRepository.findByUserAndFilePath(user, cssFilePath);
+        final User user = userRepository.findByName("user")
+                .orElseThrow(NotLoggedInException::new);
+        final HostingFile file = hostingFileRepository.findByUserAndFilePath(user, cssFilePath).orElseThrow(() -> new IllegalStateException());;
         assertThat(file.getFilePath()).isEqualTo(cssFilePath);
         assertThat(file.getFileType()).isEqualTo(FileType.CSS);
     }

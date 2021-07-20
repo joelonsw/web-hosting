@@ -12,6 +12,7 @@ import webhosting.webhosting.hosting.exception.FileSaveException;
 import webhosting.webhosting.hosting.exception.UserNameEncodingException;
 import webhosting.webhosting.login.domain.User;
 import webhosting.webhosting.login.domain.UserRepository;
+import webhosting.webhosting.login.exception.NotLoggedInException;
 
 import java.io.File;
 import java.io.IOException;
@@ -88,16 +89,22 @@ public class HostingService {
     }
 
     public String getUserHtmlFile(String userName) {
-        final User user = userRepository.findByName(userName);
-        final HostingFile htmlFile = hostingFileRepository.findByUserAndFileType(user, FileType.HTML).get(0);
-        final List<HostingFile> cssFiles = hostingFileRepository.findByUserAndFileType(user, FileType.CSS);
-        final List<HostingFile> jsFiles = hostingFileRepository.findByUserAndFileType(user, FileType.JS);
+        final User user = userRepository.findByName(userName)
+                .orElseThrow(NotLoggedInException::new);
+        final HostingFile htmlFile = hostingFileRepository.findByUserAndFileType(user, FileType.HTML)
+                .orElseThrow(FileReadException::new).get(0);
+        final List<HostingFile> cssFiles = hostingFileRepository.findByUserAndFileType(user, FileType.CSS)
+                .orElseThrow(FileReadException::new);
+        final List<HostingFile> jsFiles = hostingFileRepository.findByUserAndFileType(user, FileType.JS)
+                .orElseThrow(FileReadException::new);
         return jsoupService.manipulateHtml(htmlFile, cssFiles, jsFiles);
     }
 
     public String getUserResource(String userName, String resource) {
-        final User user = userRepository.findByName(userName);
-        final HostingFile hostingFile = hostingFileRepository.findByUserAndFilePath(user, generateFilePath(user, resource));
+        final User user = userRepository.findByName(userName)
+                .orElseThrow(NotLoggedInException::new);
+        final HostingFile hostingFile = hostingFileRepository.findByUserAndFilePath(user, generateFilePath(user, resource))
+                .orElseThrow(FileReadException::new);
         try {
             final Stream<String> lines = Files.lines(Paths.get(hostingFile.getFilePath()));
             return lines.collect(Collectors.joining(System.lineSeparator()));
