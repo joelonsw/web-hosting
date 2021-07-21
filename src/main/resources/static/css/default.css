@@ -7,6 +7,11 @@
     padding: 0;
 }
 
+@font-face {
+    font-family: 'Spoqa Han Sans';
+    unicode-range: U+AC00-D7AF;
+}
+
 .navbar li, a, button {
     font-weight: 500;
     font-size: 16px;
@@ -56,4 +61,27 @@
 
 .navbar button:hover {
     background-color: #3A3532;
+}
+
+.user-info {
+    font-weight: 500;
+    padding: 7px 18px;
+    margin-left: 20px;
+    font-size: 16px;
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid #9C9967;
+    border-radius: 50px;
+}
+
+.user-info img {
+    width: 35px;
+    margin-right: 10px;
+    border-radius: 50px;
+}
+
+.user-info span {
+    color: #6E686A;
+    font-weight: bolder;
 }

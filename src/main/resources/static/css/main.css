@@ -16,21 +16,19 @@
 
 .explanation button {
     margin-top: 50px;
-    padding: 9px 25px;
-    background-color: #3A3532;
-    color: #3A3532;
+    padding: 12px 38px;
     border-radius: 50px;
     cursor: pointer;
-}
-
-.explanation button a {
-    color: white;
+    background-color: #d6d2d0;
+    color: #3A3532;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .explanation button:hover {
     background-color: #785658;
     color: white;
-    border: 2px solid #785658;
 }
 
 .tree img {

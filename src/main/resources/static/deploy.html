@@ -21,11 +21,15 @@
                 <li><a href="/deploy">DEPLOY</a></li>
             </ul>
         </nav>
-        <a href="/login"><button>LOGIN</button></a>
+        <a href="/login" class="user-login" id="user-login"><button>LOGIN</button></a>
+        <div class="user-info" id="user-info">
+            <img src="" alt="user" class="user-image" id="user-info-image">
+            <span id="user-info-name">영상</span>
+        </div>
     </header>
     <div class="form">
-        <form method="POST" action="#" enctype="multipart/form-data" name="" onsubmit="return checkUpload()">
-            <h3>FILES TO DEPLOY</h3>
+        <form method="POST" action="http://localhost:8080/pages" enctype="multipart/form-data" name="" onsubmit="return checkUpload()">
+            <h3>Upload Files To Deploy</h3>
             <div class="htmlInput">
                 <label>Attach a Single HTML file (*) </label>
                 <input id="html-input-tag" type="file" name="htmlFile" accept=".html" onchange="HTMLSelected(this)" required>
@@ -39,9 +43,10 @@
                 <input id="js-input-tag" type="file" name="jsFile" accept=".js" multiple="multiple" onchange="JSSelected(this)">
             </div>
             <div class="submitBtn">
-                <button class="uploadBtn">Upload</button>
+                <button class="uploadBtn">DEPLOY</button>
             </div>
             <script src="js/deploy.js"></script>
+            <script src="js/default.js"></script>
         </form>
     </div>
 </body>
