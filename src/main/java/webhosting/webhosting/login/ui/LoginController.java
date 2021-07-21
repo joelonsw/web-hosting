@@ -1,9 +1,13 @@
 package webhosting.webhosting.login.ui;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import webhosting.webhosting.login.domain.LoginPrincipal;
+import webhosting.webhosting.login.domain.User;
 import webhosting.webhosting.login.service.LoginService;
+import webhosting.webhosting.login.ui.dto.UserInfoResponse;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,6 +23,11 @@ public class LoginController {
     @GetMapping("/login")
     public String loginPage() {
         return "login.html";
+    }
+
+    @GetMapping("/login/userinfo")
+    public ResponseEntity<UserInfoResponse> getUserInfo(@LoginPrincipal User user) {
+        return ResponseEntity.ok(UserInfoResponse.from(user));
     }
 
     @GetMapping("/login/google")
