@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import webhosting.webhosting.login.domain.LoginPrincipal;
-import webhosting.webhosting.login.domain.User;
+import webhosting.webhosting.member.domain.User;
 import webhosting.webhosting.login.service.LoginService;
 import webhosting.webhosting.login.ui.dto.UserInfoResponse;
 
@@ -23,6 +23,13 @@ public class LoginController {
     @GetMapping("/login")
     public String loginPage() {
         return "login.html";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.invalidate();
+        return "redirect:/";
     }
 
     @GetMapping("/login/userinfo")

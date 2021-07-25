@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import webhosting.webhosting.login.domain.User;
+import webhosting.webhosting.member.domain.User;
 import webhosting.webhosting.login.exception.GoogleUserGenerationException;
 import webhosting.webhosting.login.util.GoogleAccessToken;
 import webhosting.webhosting.login.util.GoogleUserInfo;
@@ -71,7 +71,7 @@ public class GoogleLoginService {
         try {
             final String userInfo = getUserInfo(accessToken);
             final GoogleUserInfo googleUserInfo = objectMapper.readValue(userInfo, GoogleUserInfo.class);
-            return new User(googleUserInfo.getName(), googleUserInfo.getPicture());
+            return new User(googleUserInfo.getName(), googleUserInfo.getPicture(), googleUserInfo.getSub());
         } catch (JsonProcessingException e) {
             throw new GoogleUserGenerationException(e.getMessage());
         }

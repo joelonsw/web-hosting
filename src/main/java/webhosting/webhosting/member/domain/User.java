@@ -1,4 +1,4 @@
-package webhosting.webhosting.login.domain;
+package webhosting.webhosting.member.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,13 +18,19 @@ public class User {
 
     private String name;
     private String imageUrl;
+    private String socialId;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<HostingFile> hostingFiles;
 
-    public User(String name, String imageUrl) {
+    public User(String name, String imageUrl, String socialId) {
         this.name = name;
         this.imageUrl = imageUrl;
+        this.socialId = socialId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

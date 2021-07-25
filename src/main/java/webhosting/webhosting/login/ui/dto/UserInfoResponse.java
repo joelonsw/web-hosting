@@ -2,7 +2,7 @@ package webhosting.webhosting.login.ui.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import webhosting.webhosting.login.domain.User;
+import webhosting.webhosting.member.domain.User;
 
 @AllArgsConstructor
 @Getter

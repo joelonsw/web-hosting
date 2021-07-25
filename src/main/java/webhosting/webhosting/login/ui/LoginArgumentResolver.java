@@ -7,8 +7,8 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 import webhosting.webhosting.login.domain.LoginPrincipal;
-import webhosting.webhosting.login.domain.User;
-import webhosting.webhosting.login.domain.UserRepository;
+import webhosting.webhosting.member.domain.User;
+import webhosting.webhosting.member.domain.UserRepository;
 import webhosting.webhosting.login.exception.NotLoggedInException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,11 +30,11 @@ public class LoginArgumentResolver implements HandlerMethodArgumentResolver {
                                 NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
         HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
         HttpSession session = request.getSession();
-        Object userName = session.getAttribute("name");
-        if (Objects.isNull(userName)) {
+        Object name = session.getAttribute("name");
+        if (Objects.isNull(name)) {
             throw new NotLoggedInException("로그인 사용자가 없습니다.");
         }
-        return userRepository.findByName((String)userName)
+        return userRepository.findByName((String)name)
                 .orElseThrow(NotLoggedInException::new);
     }
 }
