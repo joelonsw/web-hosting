@@ -2,6 +2,7 @@ let loginButton = document.getElementById("user-login");
 let userInfo = document.getElementById("user-info");
 let userInfoImage = document.getElementById("user-info-image");
 let userInfoName = document.getElementById("user-info-name");
+let mypageNickname = document.getElementById("mypage-nickname");
 
 loginRequest();
 
@@ -16,6 +17,7 @@ async function loginRequest() {
 function setProfile(userInfoResponse) {
     userInfo.style.display = "flex";
     userInfoName.innerText = userInfoResponse.name;
+    mypageNickname.innerText = "nickname : " + userInfoResponse.name;
     userInfoImage.setAttribute("src", userInfoResponse.imageUrl);
     loginButton.style.display = "none";
 }

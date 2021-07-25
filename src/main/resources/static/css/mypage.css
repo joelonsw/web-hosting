@@ -1,0 +1,32 @@
+.mypage {
+    display: flex;
+    flex-direction: column;
+    padding: 50px 27%;
+    align-items: center;
+}
+
+.mypage h1 {
+    color: #6E686A;
+    margin-bottom: 50px;
+}
+
+.mypage h4 {
+    color: #3A3532;
+}
+
+.mypage button {
+    margin-top: 100px;
+    width: 140px;
+    height: 55px;
+    background-color: #9C9967;
+    border:none;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.mypage button:hover {
+    background-color: #3A3532;
+    color: white;
+    border: 2px solid #3A3532;
+}
