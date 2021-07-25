@@ -1,0 +1,89 @@
+spring:
+  profiles:
+    active: test
+    group:
+      prod: oauth
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.H2Dialect
+    show-sql: true
+oauth:
+  google:
+    token_url: google_test_token_url
+    redirect_uri: google_test_redirect_url
+    user_info_url: google_test_user_info_url
+    oauth_redirect_url: google_test_oauth_redirect_url
+    client_id: google_test_client_id
+    client_secret: google_test_client_secret
+  facebook:
+    token_url: facebook_test_token_url
+    redirect_uri: facebook_test_redirect_url
+    user_info_url: facebook_test_user_info_url
+    oauth_redirect_url: facebook_test_oauth_redirect_url
+    client_id: facebook_test_client_id
+    client_secret: facebook_test_client_secret
+  github:
+    token_url: github_test_token_url
+    redirect_uri: github_test_redirect_url
+    user_info_url: github_test_user_info_url
+    oauth_redirect_url: github_test_oauth_redirect_url
+    client_id: github_test_client_id
+    client_secret: github_test_client_secret
+hosting:
+  file:
+    path: C:\\Users\\joel6\\Desktop\\
+  server:
+    path: http://localhost:8080/pages/
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost/webhosting?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8
+    username: joel
+    password: joel
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+hosting:
+  file:
+    path: /home/ubuntu/userfile/
+  server:
+    path: https://joel-web-hosting.o-r.kr/pages/
+---
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+        SQL: DEBUG
+spring:
+  web:
+    resources:
+      static-locations: classpath:/static, file:/static
