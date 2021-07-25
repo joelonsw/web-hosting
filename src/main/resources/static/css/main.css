@@ -8,7 +8,7 @@
     color: #6E686A;
 }
 
-.explanation p {
+.explanation pre {
     margin-top: 50px;
     width: 80%;
     color: #785658;
@@ -32,5 +32,10 @@
 }
 
 .tree img {
-    width: 425px;
+    position: absolute;
+    left: 50%;
+    top: 25%;
+    opacity: 0.18;
+    z-index: -2;
+    width: 475px;
 }
