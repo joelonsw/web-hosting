@@ -2,8 +2,6 @@ package webhosting.webhosting.user.ui;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import webhosting.webhosting.login.domain.LoginPrincipal;
-import webhosting.webhosting.user.domain.User;
 import webhosting.webhosting.user.service.UserService;
 
 @Controller
@@ -15,7 +13,7 @@ public class UserController {
     }
 
     @GetMapping("/mypage")
-    public String mypage(@LoginPrincipal User user) {
+    public String mypage() {
         return "mypage.html";
     }
 }
