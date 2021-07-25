@@ -3,6 +3,7 @@ package webhosting.webhosting.login.ui;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import webhosting.webhosting.login.domain.LoginPrincipal;
 import webhosting.webhosting.user.domain.User;
@@ -37,43 +38,15 @@ public class LoginController {
         return ResponseEntity.ok(UserInfoResponse.from(user));
     }
 
-    @GetMapping("/login/google")
-    public String loginWithGoogle() {
-        String redirectUrl = loginService.generateGoogleRedirectUrl();
+    @GetMapping("/login/{social}")
+    public String generateRedirectUrl(@PathVariable String social) {
+        String redirectUrl = loginService.generateRedirectUrl(social);
         return "redirect:" + redirectUrl;
     }
 
-    @GetMapping("/login/oauth/google")
-    public String oauthGoogle(@RequestParam String code, HttpServletRequest request) {
-        String socialId = loginService.oauthGoogle(code);
-        HttpSession session = request.getSession();
-        session.setAttribute("socialId", socialId);
-        return "redirect:/";
-    }
-
-    @GetMapping("/login/facebook")
-    public String loginWithFacebook() {
-        String redirectUrl = loginService.generateFacebookRedirectUrl();
-        return "redirect:" + redirectUrl;
-    }
-
-    @GetMapping("/login/oauth/facebook")
-    public String oauthFacebook(@RequestParam String code, HttpServletRequest request) {
-        String socialId = loginService.oauthFacebook(code);
-        HttpSession session = request.getSession();
-        session.setAttribute("socialId", socialId);
-        return "redirect:/";
-    }
-
-    @GetMapping("/login/github")
-    public String loginWithGithub() {
-        String redirectUrl = loginService.generateGithubRedirectUrl();
-        return "redirect:" + redirectUrl;
-    }
-
-    @GetMapping("/login/oauth/github")
-    public String oauthGithub(@RequestParam String code, HttpServletRequest request) {
-        String socialId = loginService.oauthGithub(code);
+    @GetMapping("/login/oauth/{social}")
+    public String loginWithSocial(@PathVariable String social, @RequestParam String code, HttpServletRequest request) {
+        String socialId = loginService.loginWithSocial(social, code);
         HttpSession session = request.getSession();
         session.setAttribute("socialId", socialId);
         return "redirect:/";

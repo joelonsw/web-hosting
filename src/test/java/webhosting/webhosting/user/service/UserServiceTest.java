@@ -26,12 +26,12 @@ class UserServiceTest {
     @Test
     void validateDuplicateUserName() {
         User user = new User("name", "imageUrl", "socialId2");
-        String socialId = userService.register(user);
+        String socialId = userService.saveAndGetSocialId(user);
         User savedUser = userRepository.findBySocialId(socialId).orElseThrow(IllegalArgumentException::new);
         assertThat(savedUser.getName()).isEqualTo("name(2)");
 
         user = new User("name", "imageUrl", "socialId3");
-        socialId = userService.register(user);
+        socialId = userService.saveAndGetSocialId(user);
         savedUser = userRepository.findBySocialId(socialId).orElseThrow(IllegalArgumentException::new);
         assertThat(savedUser.getName()).isEqualTo("name(3)");
     }

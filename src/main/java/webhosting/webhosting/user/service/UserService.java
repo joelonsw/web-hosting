@@ -12,7 +12,7 @@ import java.util.Optional;
 public class UserService {
     private UserRepository userRepository;
 
-    public String register(User user) {
+    public String saveAndGetSocialId(User user) {
         if (checkAlreadyMember(user)) {
             return user.getSocialId();
         }

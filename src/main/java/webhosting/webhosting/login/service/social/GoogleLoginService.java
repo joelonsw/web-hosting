@@ -1,11 +1,11 @@
-package webhosting.webhosting.login.service;
+package webhosting.webhosting.login.service.social;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import webhosting.webhosting.login.util.AccessToken;
-import webhosting.webhosting.login.util.GoogleUserInfo;
+import webhosting.webhosting.login.service.social.dto.AccessToken;
+import webhosting.webhosting.login.service.social.dto.GoogleUserInfo;
 import webhosting.webhosting.user.domain.User;
 
 import java.util.Collections;
@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class GoogleLoginService {
+public class GoogleLoginService implements SocialLoginService {
 
     @Value("${oauth.google.client_id}")
     private String clientId;
@@ -35,6 +35,7 @@ public class GoogleLoginService {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
+    @Override
     public String generateRedirectUrl() {
         return oauthRedirectUrl +
                 "?client_id=" + clientId +
@@ -43,7 +44,13 @@ public class GoogleLoginService {
                 "&redirect_uri=" + redirectUri;
     }
 
-    public AccessToken generateAccessToken(String code) {
+    @Override
+    public User generateUser(String code) {
+        final AccessToken accessToken = generateAccessToken(code);
+        return generateUser(accessToken);
+    }
+
+    private AccessToken generateAccessToken(String code) {
         Map<String, Object> params = new HashMap<>();
         params.put("code", code);
         params.put("client_id", clientId);
@@ -55,7 +62,7 @@ public class GoogleLoginService {
         return responseEntity.getBody();
     }
 
-    public User generateUser(AccessToken accessToken) {
+    private User generateUser(AccessToken accessToken) {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         headers.add("Authorization", accessToken.getToken_type() + " " + accessToken.getAccess_token());

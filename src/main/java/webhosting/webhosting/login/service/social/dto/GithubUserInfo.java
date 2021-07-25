@@ -1,4 +1,4 @@
-package webhosting.webhosting.login.util;
+package webhosting.webhosting.login.service.social.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

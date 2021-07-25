@@ -1,4 +1,4 @@
-package webhosting.webhosting.login.util;
+package webhosting.webhosting.login.service.social.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class GithubAccessToken {
-    private String token_type;
-    private String scope;
+public class AccessToken {
     private String access_token;
+    private String token_type;
 }

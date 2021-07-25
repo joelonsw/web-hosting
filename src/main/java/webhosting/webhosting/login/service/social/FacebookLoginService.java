@@ -1,15 +1,15 @@
-package webhosting.webhosting.login.service;
+package webhosting.webhosting.login.service.social;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import webhosting.webhosting.login.util.AccessToken;
-import webhosting.webhosting.login.util.FacebookUserInfo;
+import webhosting.webhosting.login.service.social.dto.AccessToken;
+import webhosting.webhosting.login.service.social.dto.FacebookUserInfo;
 import webhosting.webhosting.user.domain.User;
 
 @Service
-public class FacebookLoginService {
+public class FacebookLoginService implements SocialLoginService {
     @Value("${oauth.facebook.client_id}")
     private String clientId;
 
@@ -29,15 +29,22 @@ public class FacebookLoginService {
     private String oauthRedirectUrl;
 
     private final RestTemplate restTemplate = new RestTemplate();
-    ;
 
+
+    @Override
     public String generateRedirectUrl() {
         return oauthRedirectUrl +
                 "?client_id=" + clientId +
                 "&redirect_uri=" + redirectUri;
     }
 
-    public AccessToken generateAccessToken(String code) {
+    @Override
+    public User generateUser(String code) {
+        final AccessToken accessToken = generateAccessToken(code);
+        return generateUser(accessToken);
+    }
+
+    private AccessToken generateAccessToken(String code) {
         String accessTokenUrl = tokenUrl +
                 "?client_id=" + clientId +
                 "&redirect_uri=" + redirectUri +
@@ -48,7 +55,7 @@ public class FacebookLoginService {
         return response.getBody();
     }
 
-    public User generateUser(AccessToken accessToken) {
+    private User generateUser(AccessToken accessToken) {
         String userInfoFullUrl = userInfoUrl +
                 "?fields=id,name" +
                 "&access_token=" + accessToken.getAccess_token();
