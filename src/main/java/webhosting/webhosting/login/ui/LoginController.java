@@ -45,9 +45,9 @@ public class LoginController {
 
     @GetMapping("/login/oauth/google")
     public String oauthGoogle(@RequestParam String code, HttpServletRequest request) {
-        String name = loginService.oauthGoogle(code);
+        String socialId = loginService.oauthGoogle(code);
         HttpSession session = request.getSession();
-        session.setAttribute("name", name);
+        session.setAttribute("socialId", socialId);
         return "redirect:/";
     }
 }

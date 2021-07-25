@@ -22,6 +22,11 @@ public class HostingController {
         this.hostingService = hostingService;
     }
 
+    @GetMapping("/")
+    public String indexPage() {
+        return "index.html";
+    }
+
     @GetMapping("/deploy")
     public String deployPage() {
         return "deploy.html";

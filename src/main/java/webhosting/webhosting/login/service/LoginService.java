@@ -27,7 +27,7 @@ public class LoginService {
             return user.getSocialId();
         }
         final User savedUser = saveUser(user);
-        return savedUser.getName();
+        return savedUser.getSocialId();
     }
 
     private boolean checkAlreadyMember(User user) {

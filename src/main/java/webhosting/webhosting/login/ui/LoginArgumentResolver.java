@@ -30,11 +30,11 @@ public class LoginArgumentResolver implements HandlerMethodArgumentResolver {
                                 NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
         HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
         HttpSession session = request.getSession();
-        Object name = session.getAttribute("name");
-        if (Objects.isNull(name)) {
+        Object socialId = session.getAttribute("socialId");
+        if (Objects.isNull(socialId)) {
             throw new NotLoggedInException("로그인 사용자가 없습니다.");
         }
-        return userRepository.findByName((String)name)
+        return userRepository.findBySocialId((String)socialId)
                 .orElseThrow(NotLoggedInException::new);
     }
 }
