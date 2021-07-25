@@ -2,7 +2,7 @@ package webhosting.webhosting.hosting.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import webhosting.webhosting.member.domain.User;
+import webhosting.webhosting.user.domain.User;
 
 import javax.persistence.*;
 

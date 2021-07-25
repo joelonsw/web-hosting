@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import webhosting.webhosting.hosting.service.HostingService;
 import webhosting.webhosting.login.domain.LoginPrincipal;
-import webhosting.webhosting.member.domain.User;
+import webhosting.webhosting.user.domain.User;
 
 import java.util.List;
 

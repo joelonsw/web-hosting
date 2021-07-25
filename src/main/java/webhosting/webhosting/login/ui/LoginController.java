@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import webhosting.webhosting.login.domain.LoginPrincipal;
-import webhosting.webhosting.member.domain.User;
+import webhosting.webhosting.user.domain.User;
 import webhosting.webhosting.login.service.LoginService;
 import webhosting.webhosting.login.ui.dto.UserInfoResponse;
 
@@ -46,6 +46,34 @@ public class LoginController {
     @GetMapping("/login/oauth/google")
     public String oauthGoogle(@RequestParam String code, HttpServletRequest request) {
         String socialId = loginService.oauthGoogle(code);
+        HttpSession session = request.getSession();
+        session.setAttribute("socialId", socialId);
+        return "redirect:/";
+    }
+
+    @GetMapping("/login/facebook")
+    public String loginWithFacebook() {
+        String redirectUrl = loginService.generateFacebookRedirectUrl();
+        return "redirect:" + redirectUrl;
+    }
+
+    @GetMapping("/login/oauth/facebook")
+    public String oauthFacebook(@RequestParam String code, HttpServletRequest request) {
+        String socialId = loginService.oauthFacebook(code);
+        HttpSession session = request.getSession();
+        session.setAttribute("socialId", socialId);
+        return "redirect:/";
+    }
+
+    @GetMapping("/login/github")
+    public String loginWithGithub() {
+        String redirectUrl = loginService.generateGithubRedirectUrl();
+        return "redirect:" + redirectUrl;
+    }
+
+    @GetMapping("/login/oauth/github")
+    public String oauthGithub(@RequestParam String code, HttpServletRequest request) {
+        String socialId = loginService.oauthGithub(code);
         HttpSession session = request.getSession();
         session.setAttribute("socialId", socialId);
         return "redirect:/";

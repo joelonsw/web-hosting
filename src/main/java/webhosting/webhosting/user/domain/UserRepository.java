@@ -1,4 +1,4 @@
-package webhosting.webhosting.member.domain;
+package webhosting.webhosting.user.domain;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

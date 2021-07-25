@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import webhosting.webhosting.login.exception.NotLoggedInException;
-import webhosting.webhosting.member.domain.User;
-import webhosting.webhosting.member.domain.UserRepository;
+import webhosting.webhosting.user.domain.User;
+import webhosting.webhosting.user.domain.UserRepository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

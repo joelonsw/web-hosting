@@ -1,50 +1,47 @@
 package webhosting.webhosting.login.service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import webhosting.webhosting.member.domain.User;
-import webhosting.webhosting.member.domain.UserRepository;
-
-import java.util.Optional;
+import webhosting.webhosting.login.util.AccessToken;
+import webhosting.webhosting.login.util.GithubAccessToken;
+import webhosting.webhosting.user.domain.User;
+import webhosting.webhosting.user.service.UserService;
 
 @Service
+@AllArgsConstructor
 public class LoginService {
     private GoogleLoginService googleLoginService;
-    private UserRepository userRepository;
-
-    public LoginService(GoogleLoginService googleLoginService, UserRepository userRepository) {
-        this.googleLoginService = googleLoginService;
-        this.userRepository = userRepository;
-    }
+    private FacebookLoginService facebookLoginService;
+    private GithubLoginService githubLoginService;
+    private UserService userService;
 
     public String generateGoogleRedirectUrl() {
         return googleLoginService.generateRedirectUrl();
     }
 
     public String oauthGoogle(String code) {
-        final String accessToken = googleLoginService.generateAccessToken(code);
+        final AccessToken accessToken = googleLoginService.generateAccessToken(code);
         final User user = googleLoginService.generateUser(accessToken);
-        if (checkAlreadyMember(user)) {
-            return user.getSocialId();
-        }
-        final User savedUser = saveUser(user);
-        return savedUser.getSocialId();
+        return userService.register(user);
     }
 
-    private boolean checkAlreadyMember(User user) {
-        final Optional<User> signedUpUser = userRepository.findBySocialId(user.getSocialId());
-        return signedUpUser.isPresent();
+    public String generateFacebookRedirectUrl() {
+        return facebookLoginService.generateRedirectUrl();
     }
 
-    public User saveUser(User user) {
-        String socialLoginName = user.getName();
-        Optional<User> duplicateNameUser = userRepository.findByName(socialLoginName);
-        int number = 2;
-        while (duplicateNameUser.isPresent()) {
-            String duplicateMark = "(" + number + ")";
-            duplicateNameUser = userRepository.findByName(socialLoginName + duplicateMark);
-            number++;
-            user.setName(socialLoginName + duplicateMark);
-        }
-        return userRepository.save(user);
+    public String oauthFacebook(String code) {
+        final AccessToken accessToken = facebookLoginService.generateAccessToken(code);
+        final User user = facebookLoginService.generateUser(accessToken);
+        return userService.register(user);
+    }
+
+    public String generateGithubRedirectUrl() {
+        return githubLoginService.generateRedirectUrl();
+    }
+
+    public String oauthGithub(String code) {
+        final GithubAccessToken accessToken = githubLoginService.generateAccessToken(code);
+        final User user = githubLoginService.generateUser(accessToken);
+        return userService.register(user);
     }
 }

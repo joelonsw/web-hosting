@@ -10,12 +10,12 @@ import webhosting.webhosting.user.domain.User;
 @AllArgsConstructor
 @Getter
 @Setter
-public class GoogleUserInfo {
-    private String sub;
+public class GithubUserInfo {
+    private Long id;
     private String name;
-    private String picture;
+    private String avatar_url;
 
     public User toUser() {
-        return new User(name, picture, sub);
+        return new User(name, avatar_url, String.valueOf(id));
     }
 }

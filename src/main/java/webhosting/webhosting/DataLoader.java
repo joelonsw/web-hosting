@@ -5,8 +5,8 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
-import webhosting.webhosting.member.domain.User;
-import webhosting.webhosting.member.domain.UserRepository;
+import webhosting.webhosting.user.domain.User;
+import webhosting.webhosting.user.domain.UserRepository;
 
 @Profile("test")
 @Component

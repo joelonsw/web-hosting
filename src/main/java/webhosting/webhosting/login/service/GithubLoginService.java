@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import webhosting.webhosting.login.util.AccessToken;
-import webhosting.webhosting.login.util.GoogleUserInfo;
+import webhosting.webhosting.login.util.GithubAccessToken;
+import webhosting.webhosting.login.util.GithubUserInfo;
 import webhosting.webhosting.user.domain.User;
 
 import java.util.Collections;
@@ -13,24 +13,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class GoogleLoginService {
+public class GithubLoginService {
 
-    @Value("${oauth.google.client_id}")
+    @Value("${oauth.github.client_id}")
     private String clientId;
 
-    @Value("${oauth.google.client_secret}")
+    @Value("${oauth.github.client_secret}")
     private String clientSecret;
 
-    @Value("${oauth.google.token_url}")
+    @Value("${oauth.github.token_url}")
     private String tokenUrl;
 
-    @Value("${oauth.google.redirect_uri}")
+    @Value("${oauth.github.redirect_uri}")
     private String redirectUri;
 
-    @Value("${oauth.google.user_info_url}")
+    @Value("${oauth.github.user_info_url}")
     private String userInfoUrl;
 
-    @Value("${oauth.google.oauth_redirect_url}")
+    @Value("${oauth.github.oauth_redirect_url}")
     private String oauthRedirectUrl;
 
     private final RestTemplate restTemplate = new RestTemplate();
@@ -38,30 +38,27 @@ public class GoogleLoginService {
     public String generateRedirectUrl() {
         return oauthRedirectUrl +
                 "?client_id=" + clientId +
-                "&scope=profile" +
-                "&response_type=code" +
-                "&redirect_uri=" + redirectUri;
+                "&scope=read:user";
     }
 
-    public AccessToken generateAccessToken(String code) {
+    public GithubAccessToken generateAccessToken(String code) {
         Map<String, Object> params = new HashMap<>();
         params.put("code", code);
         params.put("client_id", clientId);
         params.put("client_secret", clientSecret);
         params.put("redirect_uri", redirectUri);
-        params.put("grant_type", "authorization_code");
 
-        final ResponseEntity<AccessToken> responseEntity = restTemplate.postForEntity(tokenUrl, params, AccessToken.class);
+        final ResponseEntity<GithubAccessToken> responseEntity = restTemplate.postForEntity(tokenUrl, params, GithubAccessToken.class);
         return responseEntity.getBody();
     }
 
-    public User generateUser(AccessToken accessToken) {
+    public User generateUser(GithubAccessToken accessToken) {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         headers.add("Authorization", accessToken.getToken_type() + " " + accessToken.getAccess_token());
 
-        final ResponseEntity<GoogleUserInfo> userInfoEntity =
-                restTemplate.exchange(userInfoUrl, HttpMethod.GET, new HttpEntity<>("parameters", headers), GoogleUserInfo.class);
+        final ResponseEntity<GithubUserInfo> userInfoEntity =
+                restTemplate.exchange(userInfoUrl, HttpMethod.GET, new HttpEntity<>("parameters", headers), GithubUserInfo.class);
         return userInfoEntity.getBody().toUser();
     }
 }

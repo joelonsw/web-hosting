@@ -1,7 +1,7 @@
 package webhosting.webhosting.hosting.domain;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import webhosting.webhosting.member.domain.User;
+import webhosting.webhosting.user.domain.User;
 
 import java.util.List;
 import java.util.Optional;

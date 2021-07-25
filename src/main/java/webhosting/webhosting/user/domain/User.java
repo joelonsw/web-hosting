@@ -1,4 +1,4 @@
-package webhosting.webhosting.member.domain;
+package webhosting.webhosting.user.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

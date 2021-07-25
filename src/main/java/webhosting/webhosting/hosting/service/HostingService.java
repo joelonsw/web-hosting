@@ -10,8 +10,8 @@ import webhosting.webhosting.hosting.domain.HostingFileRepository;
 import webhosting.webhosting.hosting.exception.FileReadException;
 import webhosting.webhosting.hosting.exception.FileSaveException;
 import webhosting.webhosting.hosting.exception.UserNameEncodingException;
-import webhosting.webhosting.member.domain.User;
-import webhosting.webhosting.member.domain.UserRepository;
+import webhosting.webhosting.user.domain.User;
+import webhosting.webhosting.user.domain.UserRepository;
 import webhosting.webhosting.login.exception.NotLoggedInException;
 
 import java.io.File;
