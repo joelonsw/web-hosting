@@ -87,3 +87,8 @@ spring:
   web:
     resources:
       static-locations: classpath:/static, file:/static
+  multipart:
+    maxFileSize: 10MB
+  servlet:
+    multipart:
+      maxRequestSize: 10MB
