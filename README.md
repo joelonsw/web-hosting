@@ -24,17 +24,17 @@
     - [x] 다 만들어지면 페이지 링크를 알려주기
 - [x] OAuth 구현하기
     - [x] Google
-    - [ ] Facebook
-    - [ ] Github
+    - [x] Facebook
+    - [x] Github
 - [x] JPA 전환하기
     - [x] HostingFile
     - [x] User
 - [x] 세션 관리
     - [x] 세션이 유효한 사용자라면 로그인 요청 보내 프로필 받아오기
     - [x] 로그아웃 누르면 세션 폐기!
-- [ ] 마이페이지
-    - [ ] 인터셉터 구현
-    - [ ] Go To Your Page?
+- [x] 마이페이지
+    - [x] 인터셉터 구현
+    - [x] Go To Your Page?
 
 ### ✂ 리팩토링 중점 사안
 - [x] HTML만 필수! CSS와 JS 코드는 Optional로 저장토록 수정

@@ -10,6 +10,13 @@
     margin-bottom: 50px;
 }
 
+.mypage h3 {
+    color: #6E686A;
+    text-decoration: underline;
+    font-weight: bold;
+    padding-bottom: 3px;
+}
+
 .mypage h4 {
     color: #3A3532;
 }
@@ -20,7 +27,7 @@
     height: 55px;
     background-color: #d6d2d0;
     color: #3A3532;
-    border:none;
+    border: none;
     border-radius: 50px;
     cursor: pointer;
     font-weight: bold;

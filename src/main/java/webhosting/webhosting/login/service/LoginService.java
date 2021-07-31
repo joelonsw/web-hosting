@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import webhosting.webhosting.login.service.social.SocialFactory;
 import webhosting.webhosting.login.service.social.SocialLoginService;
+import webhosting.webhosting.login.ui.dto.UserInfoResponse;
 import webhosting.webhosting.user.domain.User;
 import webhosting.webhosting.user.service.UserService;
 
@@ -21,5 +22,13 @@ public class LoginService {
         final SocialLoginService socialLoginService = SocialFactory.of(social).getSocialLoginService();
         final User user = socialLoginService.generateUser(code);
         return userService.saveAndGetSocialId(user);
+    }
+
+    public UserInfoResponse getUserInfo(User user) {
+        int deployedFiles = user.getHostingFiles().size();
+        if (deployedFiles > 0) {
+            return UserInfoResponse.from(user, true);
+        }
+        return UserInfoResponse.from(user, false);
     }
 }

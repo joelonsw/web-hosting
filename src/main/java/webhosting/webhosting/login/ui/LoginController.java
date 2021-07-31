@@ -35,7 +35,8 @@ public class LoginController {
 
     @GetMapping("/login/userinfo")
     public ResponseEntity<UserInfoResponse> getUserInfo(@LoginPrincipal User user) {
-        return ResponseEntity.ok(UserInfoResponse.from(user));
+        UserInfoResponse userInfoResponse = loginService.getUserInfo(user);
+        return ResponseEntity.ok(userInfoResponse);
     }
 
     @GetMapping("/login/{social}")

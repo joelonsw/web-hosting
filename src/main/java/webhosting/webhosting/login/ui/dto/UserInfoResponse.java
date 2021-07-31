@@ -9,8 +9,9 @@ import webhosting.webhosting.user.domain.User;
 public class UserInfoResponse {
     private String name;
     private String imageUrl;
+    private boolean deployed;
 
-    public static UserInfoResponse from(User user) {
-        return new UserInfoResponse(user.getName(), user.getImageUrl());
+    public static UserInfoResponse from(User user, boolean deployed) {
+        return new UserInfoResponse(user.getName(), user.getImageUrl(), deployed);
     }
 }
