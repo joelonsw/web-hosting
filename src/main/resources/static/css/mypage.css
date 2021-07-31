@@ -45,3 +45,35 @@
     background-color: #785658;
     color: white;
 }
+
+@media screen and (max-width: 450px){
+    .mypage h1 {
+        color: #6E686A;
+        margin-bottom: 50px;
+        font-size: 23px;
+    }
+
+    .category {
+        font-size: 14px;
+        color: #3A3532;
+        text-decoration: underline;
+        font-weight: bold;
+        padding-bottom: 3px;
+    }
+
+    .value {
+        font-size: 14px;
+        color: #3A3532;
+    }
+
+    .button-atag {
+        margin-top: 50px;
+    }
+
+    .mypage button {
+        height: 40px;
+        width: 90px;
+        border-radius: 50px;
+        font-size: 12px;
+    }
+}

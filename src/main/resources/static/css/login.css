@@ -30,3 +30,20 @@
 p {
     margin-top: 4px;
 }
+
+@media screen and (max-width: 450px){
+    .login h1 {
+        color: #6E686A;
+        margin-bottom: 30px;
+        font-size: 23px;
+    }
+
+    .login button {
+        font-size: 12px;
+        margin-top: 20px;
+        width: 210px;
+        height: 52px;
+        border-radius: 50px;
+        cursor: pointer;
+    }
+}

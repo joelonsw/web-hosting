@@ -69,3 +69,55 @@ input {
     background-color: #785658;
     color: white;
 }
+
+@media screen and (max-width: 1130px){
+    .form {
+        padding: 50px 12%;
+    }
+}
+
+@media screen and (max-width: 450px){
+    .form {
+        padding: 20px 10%;
+    }
+
+    form > div {
+        margin-top: 10px;
+        width: 100%;
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    form > h3 {
+        margin: 25px 0;
+        font-size: 16px;
+        color: #3A3532;
+    }
+
+    label {
+        margin-right: 0%;
+        font-size: 14px;
+        width: 100%;
+        margin-left: 0%;
+        text-align: center;
+    }
+
+    input {
+        width: 70%;
+        border: none;
+        font-size: 12px;
+        padding: 8px 10px;
+        border-radius: 10px;
+        margin-right: 0%;
+    }
+
+    .submitBtn > button {
+        width: 40%;
+        font-size: 12px;
+        margin-left: 0%;
+        margin-bottom: 15px;
+        border-radius: 50px;
+    }
+}

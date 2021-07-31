@@ -85,3 +85,40 @@
     color: #6E686A;
     font-weight: bolder;
 }
+
+@media screen and (max-width: 1130px){
+    .navbar {
+        padding: 30px 17%;
+    }
+}
+
+@media screen and (max-width: 780px){
+    .navbar {
+        padding: 30px 12%;
+    }
+}
+
+@media screen and (max-width: 450px){
+
+    .navbar .logo {
+        cursor: pointer;
+        width: 190px;
+        margin-right: auto;
+    }
+
+    .navbar .navbar-links li {
+        display: none;
+    }
+
+    .navbar button {
+        font-size: 12px;
+        padding: 8px 15px;
+        border-radius: 50px;
+        margin-left: 0px;
+        margin-right: 10px;
+    }
+
+    .navbar button:hover {
+        background-color: #3A3532;
+    }
+}

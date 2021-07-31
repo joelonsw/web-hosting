@@ -33,9 +33,72 @@
 
 .tree img {
     position: absolute;
-    left: 50%;
     top: 25%;
+    right: 23%;
     opacity: 0.18;
     z-index: -2;
     width: 475px;
+}
+
+@media screen and (max-width: 1130px){
+    .body {
+        padding: 50px 17%;
+    }
+
+    .explanation {
+        width: 100%;
+    }
+
+    .tree img {
+        right: 13%;
+        top: 18%;
+    }
+}
+
+@media screen and (max-width: 780px){
+    .explanation pre {
+        font-size: 14px;
+    }
+
+    .tree img {
+        right: 13%;
+        top: 30%;
+        width: 350px;
+    }
+}
+
+@media screen and (max-width: 450px){
+    .body {
+        padding: 15px 17%;
+    }
+
+    .explanation h1{
+        font-size: 23px;
+    }
+
+    .explanation pre {
+        white-space: -moz-pre-wrap;
+        white-space: -pre-wrap;
+        white-space: -o-pre-wrap;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        width: 100%;
+        font-size: 12px;
+    }
+
+    .tree img {
+        right: 13%;
+        top: 45%;
+        width: 190px;
+    }
+
+    .body {
+        margin-top: 0px;
+    }
+
+    .explanation button {
+        margin-top: 30px;
+        padding: 10px 20px;
+        font-size: 12px;
+    }
 }
