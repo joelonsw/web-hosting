@@ -99,7 +99,6 @@
 }
 
 @media screen and (max-width: 450px){
-
     .navbar .logo {
         cursor: pointer;
         width: 190px;
@@ -120,5 +119,17 @@
 
     .navbar button:hover {
         background-color: #3A3532;
+    }
+
+    .user-info {
+        padding: 5px 10px;
+    }
+
+    .user-info img {
+        margin-right: 0px;
+    }
+
+    .user-info span{
+        display: none;
     }
 }
