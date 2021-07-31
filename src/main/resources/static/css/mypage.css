@@ -10,8 +10,8 @@
     margin-bottom: 50px;
 }
 
-.mypage h3 {
-    color: #6E686A;
+.category {
+    color: #3A3532;
     text-decoration: underline;
     font-weight: bold;
     padding-bottom: 3px;
@@ -21,8 +21,16 @@
     color: #3A3532;
 }
 
+.value {
+    font-size: 18px;
+    color: #3A3532;
+}
+
+.button-atag {
+    margin-top: 70px;
+}
+
 .mypage button {
-    margin-top: 100px;
     width: 140px;
     height: 55px;
     background-color: #d6d2d0;
