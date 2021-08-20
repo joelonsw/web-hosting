@@ -9,15 +9,14 @@ import webhosting.webhosting.hosting.domain.HostingFile;
 import webhosting.webhosting.hosting.domain.HostingFileRepository;
 import webhosting.webhosting.hosting.exception.FileReadException;
 import webhosting.webhosting.hosting.exception.FileSaveException;
-import webhosting.webhosting.hosting.exception.UserNameEncodingException;
+import webhosting.webhosting.login.exception.NotLoggedInException;
 import webhosting.webhosting.user.domain.User;
 import webhosting.webhosting.user.domain.UserRepository;
-import webhosting.webhosting.login.exception.NotLoggedInException;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
+import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -49,12 +48,8 @@ public class HostingService {
         saveFile(user, htmlFile, FileType.HTML);
         cssFiles.forEach(cssFile -> saveFile(user, cssFile, FileType.CSS));
         jsFiles.forEach(jsFile -> saveFile(user, jsFile, FileType.JS));
-        try {
-            final String encodedUserName = URLEncoder.encode(user.getName(), "UTF-8");
-            return serverPath + encodedUserName;
-        } catch (UnsupportedEncodingException e) {
-            throw new UserNameEncodingException("유저 이름 인코딩 실패!");
-        }
+        final String encodedUserName = encodeInUTF8(user.getName());
+        return serverPath + encodedUserName;
     }
 
     private void makeUserFolder(User user) {
@@ -86,6 +81,13 @@ public class HostingService {
 
     private String generateFilePath(User user, String originalFilename) {
         return filePath + user.getName() + "/" + originalFilename;
+    }
+
+    public String encodeInUTF8(String target) {
+        ByteBuffer byteBuffer = StandardCharsets.UTF_8.encode(target);
+        String encoded = new String(byteBuffer.array(), StandardCharsets.UTF_8);
+        encoded = encoded.replaceAll("\\u0000", "");
+        return encoded;
     }
 
     public String getUserHtmlFile(String userName) {
