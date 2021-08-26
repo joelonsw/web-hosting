@@ -2,9 +2,11 @@ package webhosting.webhosting.user.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import webhosting.webhosting.hosting.domain.FileType;
 import webhosting.webhosting.hosting.domain.HostingFile;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -21,12 +23,23 @@ public class User {
     private String socialId;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<HostingFile> hostingFiles;
+    private List<HostingFile> hostingFiles = new ArrayList<>();
 
     public User(String name, String imageUrl, String socialId) {
         this.name = name;
         this.imageUrl = imageUrl;
         this.socialId = socialId;
+    }
+
+    public HostingFile findHostingHTML() {
+        return hostingFiles.stream()
+                .filter(HostingFile::isHTML)
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("HTML file not found"));
+    }
+
+    public void addHostingFile(HostingFile hostingFile) {
+        this.hostingFiles.add(hostingFile);
     }
 
     public void setName(String name) {

@@ -30,4 +30,8 @@ public class HostingFile {
         this.filePath = filePath;
         this.fileType = fileType;
     }
+
+    public boolean isHTML() {
+        return (FileType.HTML.equals(fileType));
+    }
 }
