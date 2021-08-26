@@ -2,7 +2,7 @@ spring:
   profiles:
     active: test
     group:
-      prod: oauth
+      prod: oauth, real-db
 ---
 spring:
   config:
@@ -23,7 +23,6 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.H2Dialect
-    show-sql: true
 oauth:
   google:
     token_url: google_test_token_url
@@ -56,11 +55,6 @@ spring:
   config:
     activate:
       on-profile: prod
-  datasource:
-    driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost/webhosting?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8
-    username: joel
-    password: joel
   jpa:
     hibernate:
       ddl-auto: validate
