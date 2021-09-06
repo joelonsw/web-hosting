@@ -26,8 +26,10 @@ pageNameInput.addEventListener('keypress', function(event) {
 })
 
 function checkPageName() {
-    if (pageNameInput.value.length == 0) {
+    if (pageNameInput.value.length == 0 || pageNameInput.value.trim().length == 0) {
         alert("URL로 사용하려면 최소 한 글자는 필요합니다");
+        pageNameInput.value = "";
+        return;
     }
 
     var requestOptions = {
