@@ -32,3 +32,21 @@ body {
     font-weight: 600;
     color: black;
 }
+
+@media screen and (max-width: 1024px) {
+    .circle {
+        clip-path: circle(700px at right 1400px);
+    }
+}
+
+@media screen and (max-width: 820px) {
+    .circle {
+        clip-path: circle(350px at right 1000px);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .circle {
+        clip-path: circle(200px at right 800px);
+    }
+}

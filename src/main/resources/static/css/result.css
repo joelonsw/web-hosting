@@ -28,3 +28,30 @@
     border-radius: 7px;
     cursor: pointer;
 }
+
+@media screen and (max-width: 820px) {
+    .result {
+        margin-top: 20%;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    .result {
+        margin-top: 50%;
+    }
+
+    .result h2 {
+        text-align: center;
+        width: 90vw;
+        font-size: 1.3em;
+    }
+
+    .result h3 {
+        font-size: 1.1em;
+    }
+
+    .kakaotalk, .kakaopay {
+        font-size: 1em;
+    }
+}
