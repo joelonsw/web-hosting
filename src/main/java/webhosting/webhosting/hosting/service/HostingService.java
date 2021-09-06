@@ -7,6 +7,7 @@ import webhosting.webhosting.hosting.domain.HostingFile;
 import webhosting.webhosting.hosting.domain.HostingFileRepository;
 import webhosting.webhosting.hosting.domain.HostingFiles;
 import webhosting.webhosting.hosting.exception.FileReadException;
+import webhosting.webhosting.notification.service.NotificationService;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -25,11 +26,14 @@ public class HostingService {
     private final JsoupService jsoupService;
     private final FileSaveService fileSaveService;
     private final HostingFileRepository hostingFileRepository;
+    private final NotificationService notificationService;
 
-    public HostingService(JsoupService jsoupService, FileSaveService fileSaveService, HostingFileRepository hostingFileRepository) {
+    public HostingService(JsoupService jsoupService, FileSaveService fileSaveService,
+                          HostingFileRepository hostingFileRepository, NotificationService notificationService) {
         this.jsoupService = jsoupService;
         this.fileSaveService = fileSaveService;
         this.hostingFileRepository = hostingFileRepository;
+        this.notificationService = notificationService;
     }
 
     public boolean checkPageUsable(String pageName) {
@@ -39,6 +43,7 @@ public class HostingService {
 
     public void saveFile(String pageName, MultipartFile htmlFile, List<MultipartFile> cssFiles, List<MultipartFile> jsFiles) {
         fileSaveService.saveFile(pageName, htmlFile, cssFiles, jsFiles);
+        notificationService.sendSlackDeployMessage("https://easy-deploy.kr/pages/" + pageName);
     }
 
     public String getPage(String pageName) {

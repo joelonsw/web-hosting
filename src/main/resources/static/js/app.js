@@ -315,8 +315,8 @@ function showResultPage() {
     deploy.classList.remove('appear');
     deploy.classList.add('disappear');
     setTimeout(function () { deploy.style.display = "none"; }, 500);
-    link.innerText = "http://localhost:8080/pages/" + pageName;
-    link.href = "http://localhost:8080/pages/" + pageName;
+    link.innerText = "https://easy-deploy.kr/pages/" + pageName;
+    link.href = "https://easy-deploy.kr/pages/" + pageName;
     circle.classList.remove('disappear');
     circle.classList.add('appear');
     result.classList.add('appear');
@@ -337,7 +337,7 @@ function setUpKakao() {
                 webUrl: link.innerText,
                 mobileWebUrl: link.innerText,
             },
-            imageUrl: 'http://localhost:8080/image/logo.png',
+            imageUrl: 'https://easy-deploy.kr/image/logo.png',
         }
     });
 }

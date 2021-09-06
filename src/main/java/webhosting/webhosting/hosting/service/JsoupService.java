@@ -58,7 +58,7 @@ public class JsoupService {
     private void appendWaterMark(Document htmlDocument) {
         final String waterMark =
                 "<div style=\"position: fixed; bottom:0; width: 100%; margin: 15px;\">\n" +
-                        "    <h5>Powered By <a href=\"https://joel-web-hosting.o-r.kr/\">Joel Web Hosting</a></h5>\n" +
+                        "    <h5>Powered By <a href=\"https://easy-deploy.kr/\">Easy Deploy</a></h5>\n" +
                         "</div>";
         htmlDocument.selectFirst("body").child(0).before(waterMark);
     }

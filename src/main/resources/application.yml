@@ -2,7 +2,7 @@ spring:
   profiles:
     active: test
     group:
-      prod: oauth, real-db
+      prod: real-db
 ---
 spring:
   config:
@@ -44,7 +44,7 @@ hosting-file:
   server:
     path: /home/ubuntu/userfile/
   url:
-    path: https://joel-web-hosting.o-r.kr/
+    path: https://easy-deploy.kr
 ---
 logging:
   level:
