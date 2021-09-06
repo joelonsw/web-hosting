@@ -44,7 +44,7 @@ hosting-file:
   server:
     path: /home/ubuntu/userfile/
   url:
-    path: https://easy-deploy.kr
+    path: https://easy-deploy.kr/
 ---
 logging:
   level:
