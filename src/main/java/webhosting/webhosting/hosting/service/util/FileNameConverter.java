@@ -24,13 +24,13 @@ public class FileNameConverter {
     public static String generateCssUrlPath(String path) {
         final String tempPath = path.replace(serverPath, "");
         final String[] splitPath = tempPath.split("/", 2);
-        return urlPath + "/pages/" + splitPath[0] + "/css/" + splitPath[1];
+        return urlPath + "pages/" + splitPath[0] + "/css/" + splitPath[1];
     }
 
     public static String generateJsUrlPath(String path) {
         final String tempPath = path.replace(serverPath, "");
         final String[] splitPath = tempPath.split("/", 2);
-        return urlPath + "/pages/" + splitPath[0] + "/js/" + splitPath[1];
+        return urlPath + "pages/" + splitPath[0] + "/js/" + splitPath[1];
     }
 
     @Component

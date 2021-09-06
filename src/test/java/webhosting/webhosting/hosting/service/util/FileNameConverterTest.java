@@ -37,7 +37,7 @@ class FileNameConverterTest {
         final String serverPath = FileNameConverter.generateServerFilePath(pageName, fileName);
 
         final String cssUrl = FileNameConverter.generateCssUrlPath(serverPath);
-        assertThat("http://localhost:8080/hello-world/css/style.css").isEqualTo(cssUrl);
+        assertThat("http://localhost:8080/pages/hello-world/css/style.css").isEqualTo(cssUrl);
     }
 
     @DisplayName("사용자의 ServerPath를 Js Url로 변경할 수 있다.")
@@ -48,6 +48,6 @@ class FileNameConverterTest {
         final String serverPath = FileNameConverter.generateServerFilePath(pageName, fileName);
 
         final String jsUrl = FileNameConverter.generateJsUrlPath(serverPath);
-        assertThat("http://localhost:8080/hello-world/js/app.js").isEqualTo(jsUrl);
+        assertThat("http://localhost:8080/pages/hello-world/js/app.js").isEqualTo(jsUrl);
     }
 }
