@@ -29,9 +29,9 @@ public class FileSaveService {
     @Transactional
     public void saveFile(String pageName, MultipartFile htmlFile, List<MultipartFile> cssFiles, List<MultipartFile> jsFiles) {
         makePageDirectory(pageName);
-        saveFile(pageName, htmlFile, FileType.HTML);
-        cssFiles.forEach(cssFile -> saveFile(pageName, cssFile, FileType.CSS));
-        jsFiles.forEach(jsFile -> saveFile(pageName, jsFile, FileType.JS));
+        saveHtmlFile(pageName, htmlFile);
+        saveCssFiles(pageName, cssFiles);
+        saveJsFiles(pageName, jsFiles);
     }
 
     private void makePageDirectory(String pageName) {
@@ -41,6 +41,24 @@ public class FileSaveService {
             throw new FolderExistException("이미 존재하는 페이지 입니다");
         }
         directory.mkdir();
+    }
+
+    private void saveHtmlFile(String pageName, MultipartFile htmlFile) {
+        saveFile(pageName, htmlFile, FileType.HTML);
+    }
+
+    private void saveCssFiles(String pageName, List<MultipartFile> cssFiles) {
+        if (Objects.isNull(cssFiles)) {
+            return;
+        }
+        cssFiles.forEach(cssFile -> saveFile(pageName, cssFile, FileType.CSS));
+    }
+
+    private void saveJsFiles(String pageName, List<MultipartFile> jsFiles) {
+        if (Objects.isNull(jsFiles)) {
+            return;
+        }
+        jsFiles.forEach(jsFile -> saveFile(pageName, jsFile, FileType.JS));
     }
 
     private void saveFile(String pageName, MultipartFile file, FileType fileType) {
