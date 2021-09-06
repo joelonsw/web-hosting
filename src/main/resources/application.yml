@@ -35,7 +35,7 @@ spring:
       on-profile: prod
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: create
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
@@ -63,3 +63,5 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
+slack:
+  url: slackUrl
