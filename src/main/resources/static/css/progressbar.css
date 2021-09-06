@@ -1,0 +1,61 @@
+.deploy .progress-bar {
+    display: flex;
+    align-items: center;
+    margin: 50px 0 50px 0;
+}
+
+.deploy .progress-bar li {
+    list-style-type: none;
+    width: 25%;
+    float: left;
+    font-size: 1.3em;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.deploy .progress-bar li:before {
+    width: 20px;
+    height: 20px;
+    content: '';
+    border: 2px solid lightgrey;
+    background-color: lightgrey;
+    display: block;
+    text-align: center;
+    margin: 0 auto 10px auto;
+    border-radius: 50%;
+    transition: all 0.5s;
+}
+
+.deploy .progress-bar li:after {
+    width: 100%;
+    height: 8px;
+    content: '';
+    position: absolute;
+    background-color: lightgrey;
+    top: 8px;
+    left: -50%;
+    z-index: -1;
+    transition: all 0.5s;
+}
+
+.deploy .progress-bar li:first-child:after {
+    content: none;
+}
+
+.deploy .progress-bar li.active:before {
+    border-color: darkorange;
+    background-color: darkorange;
+    transition: all 0.5s;
+}
+
+.deploy .progress-bar li.active:after {
+    background-color: darkorange;
+    transition: all 0.5s;
+}
+
+.deploy .progress-bar li p {
+    text-align: center;
+    display: block;
+}

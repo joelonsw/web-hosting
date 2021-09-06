@@ -1,0 +1,30 @@
+.result {
+    margin-top: 9%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.result h2 {
+    font-size: 2em;
+    font-weight: 600;
+    margin-bottom: 5%;
+}
+
+.result h3 {
+    font-size: 1.3em;
+    margin-bottom: 5%;
+}
+
+.kakaotalk, .kakaopay {
+    font-size: 1.3em;
+    width: 70%;
+    height: 50px;
+    margin-top: 3%;
+    color: #f9e000;
+    background-color: #391B1B;
+    border: 1px solid #391B1B;
+    border-radius: 7px;
+    cursor: pointer;
+}

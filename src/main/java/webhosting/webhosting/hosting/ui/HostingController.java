@@ -35,21 +35,21 @@ public class HostingController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping(value = "/{pageName}", produces = "text/html")
+    @GetMapping(value = "/pages/{pageName}", produces = "text/html")
     public ResponseEntity<String> getPage(@PathVariable String pageName) {
         pageName = new String(pageName.getBytes(), StandardCharsets.UTF_8);
         final String result = hostingService.getPage(pageName);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
-    @GetMapping(value = "/{pageName}/css/{resource}", produces = {"text/css"})
+    @GetMapping(value = "/pages/{pageName}/css/{resource}", produces = {"text/css"})
     public ResponseEntity<String> getCss(@PathVariable String pageName, @PathVariable String resource) {
         pageName = new String(pageName.getBytes(), StandardCharsets.UTF_8);
         final String result = hostingService.getResource(pageName, resource);
         return ResponseEntity.ok().contentType(MediaTypeFactory.css()).body(result);
     }
 
-    @GetMapping(value = "/{pageName}/js/{resource}", produces = {"application/javascript"})
+    @GetMapping(value = "/pages/{pageName}/js/{resource}", produces = {"application/javascript"})
     public ResponseEntity<String> getJs(@PathVariable String pageName, @PathVariable String resource) {
         pageName = new String(pageName.getBytes(), StandardCharsets.UTF_8);
         final String result = hostingService.getResource(pageName, resource);

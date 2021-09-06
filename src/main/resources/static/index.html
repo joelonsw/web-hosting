@@ -1,52 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joel's Web Hosting</title>
+    <title>Easy Deploy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
     <link rel="stylesheet" href="/css/default.css">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/animation.css">
+    <link rel="stylesheet" href="/css/deploy.css">
+    <link rel="stylesheet" href="/css/progressbar.css">
+    <link rel="stylesheet" href="/css/result.css">
 </head>
+
 <body>
-    <header class="navbar">
-        <a href="/" class="logo">
-            <img src="/image/joel-web-hosting.svg" alt="logo" class="logo">
-        </a>
-        <nav>
-            <ul class="navbar-links">
-                <li><a href="https://github.com/PapimonLikelion/web-hosting">GITHUB</a></li>
-                <li><a href="/deploy">DEPLOY</a></li>
-            </ul>
-        </nav>
-        <a href="/login" class="user-login" id="user-login"><button>LOGIN</button></a>
-        <div class="user-info" id="user-info">
-            <a href="/mypage">
-                <img src="/user.png" alt="user" class="user-image" id="user-info-image">
-            </a>
-            <span id="user-info-name"></span>
-        </div>
+    <div class="circle"></div>
+
+    <header class="header">
+        <a href="/">Easy Deploy</a>
     </header>
-    <div class="body">
-        <div class="explanation">
-            <h1>Your First Website For Free!</h1>
-            <pre>
-Joel’s Web Hosting supports you to deploy your static web page for free.
 
-Click the DEPLOY button after you log in.
-
-Append a single HTML file that provides the basic structure of your website.
-
-Then append CSS/JS files to enhance your website.
-
-Submit your files then your website is good to go!
-            </pre>
-            <a><button id="main-page-deploy-btn" onclick="checkLoggedInForDeployBtn()">DEPLOY</button></a>
+    <div class="main">
+        <div class="intro">
+            <h2><strong>Easy Deploy</strong> 에서 가장 쉽게 배포하세요!</h2>
+            <p>원하는 페이지 이름을 정한 후, HTML/CSS/JS 파일을 첨부해주세요!</p>
+            <p>바로 배포된 페이지를 받아볼 수 있어요!</p>
+            <button onclick="deployBtn()">배포하기</button>
+        </div>
+        <div class="image">
+            <img src="image/website.png" alt="">
         </div>
     </div>
-    <div class="tree">
-        <img src="/image/website.png" alt="">
+
+    <div class="deploy">
+        <div class="progress-bar">
+            <li class="active" id="first_list" onclick="firstListItemBtn()">
+                <p>URL 설정</p>
+            </li>
+            <li id="second_list" onclick="secondListItemBtn()">
+                <p>HTML 첨부</p>
+            </li>
+            <li id="third_list" onclick="thirdListItemBtn()">
+                <p>CSS 첨부</p>
+            </li>
+            <li id="fourth_list" onclick="fourthListItemBtn()">
+                <p>JS 첨부</p>
+            </li>
+            <li id="fifth_list" onclick="fifthListItemBtn()">
+                <p style="padding-top: 3.5px">배포하기</p>
+            </li>
+        </div>
+
+        <div class="form">
+            <div class="pages">
+                <div class="page slide-page">
+                    <div class="content">
+                        <div class="requirement">사용할 URL을 입력해주세요</div>
+                        <div class="answer">https://easy-deploy.kr/pages/ <input class="urlInput" type="text"><button onclick="checkPageName()">중복 확인</button>
+                        </div>
+                        <div class="pageNameUsablity"></div>
+                    </div>
+                    <div class="button">
+                        <button class="firstPageBtn" onclick="firstNextBtn()">다음</button>
+                    </div>
+                </div>
+
+                <div class="page">
+                    <div class="content">
+                        <div class="requirement">HTML 파일 1개를 첨부해주세요 (필수 O)</div>
+                        <div class="answer">
+                            <div class="file htmlarea">
+                                <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                                <p>드래그 앤 드롭 혹은</p>
+                                <button class="htmlFileBtn">파일 찾기</button>
+                                <input class="htmlFileInput" type="file" accept=".html" hidden>
+                            </div>
+                            <div class="upload htmlUpload">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button">
+                        <button class="pageBtn" onclick="secondPrevBtn()">이전</button>
+                        <button class="pageBtn" onclick="secondNextBtn()">다음</button>
+                    </div>
+                </div>
+
+                <div class="page">
+                    <div class="content">
+                        <div class="requirement">CSS 파일이 있다면 첨부해주세요 (필수 X)</div>
+                        <div class="answer">
+                            <div class="file cssarea">
+                                <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                                <p>드래그 앤 드롭 혹은</p>
+                                <button class="cssFileBtn">파일 찾기</button>
+                                <input class="cssFileInput" type="file" accept=".css" multiple hidden>
+                            </div>
+                            <div class="upload cssUpload">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button">
+                        <button class="pageBtn" onclick="thirdPrevBtn()">이전</button>
+                        <button class="pageBtn" onclick="thirdNextBtn()">다음</button>
+                    </div>
+                </div>
+
+                <div class="page">
+                    <div class="content">
+                        <div class="requirement">JS 파일이 있다면 첨부해주세요 (필수 X)</div>
+                        <div class="answer">
+                            <div class="file jsarea">
+                                <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                                <p>드래그 앤 드롭 혹은</p>
+                                <button class="jsFileBtn">파일 찾기</button>
+                                <input class="jsFileInput" type="file" accept=".js" multiple hidden>
+                            </div>
+                            <div class="upload jsUpload">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button">
+                        <button class="pageBtn" onclick="fourthPrevBtn()">이전</button>
+                        <button class="pageBtn" onclick="fourthNextBtn()">다음</button>
+                    </div>
+                </div>
+
+                <div class="page">
+                    <div class="content">
+                        <div class="requirement">이제 배포해볼까요?</div>
+                        <div class="answer">🎁 준비됐나요? 🎁</div>
+                    </div>
+                    <div class="button">
+                        <button class="pageBtn" onclick="fifthPrevBtn()">이전</button>
+                        <button class="pageBtn" onclick="deployToServer()">배포하기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <script src="js/default.js"></script>
+
+    <div class="result">
+        <h2>🎉 축하합니다! 배포에 성공했어요 🎉</h2>
+        <h3>링크: <a target="_blank" rel="noopener noreferrer" class="link"></a></h3>
+        <button class="kakaotalk" id="kakaotalk">카카오톡으로 공유하기</button>
+        <button class="kakaopay" onclick="window.open('image/kakaopay.png', 'popup','width=400,height=580');">카카오페이로 후원하기</button>
+    </div>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/progressbar.js"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 </body>
+
 </html>

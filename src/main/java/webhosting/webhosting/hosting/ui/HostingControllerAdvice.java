@@ -1,6 +1,5 @@
 package webhosting.webhosting.hosting.ui;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -8,7 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class HostingControllerAdvice {
 
     @ExceptionHandler({Exception.class})
-    public ResponseEntity<String> handleException(Exception exception) {
-        return ResponseEntity.internalServerError().body(exception.getMessage());
+    public String handleException(Exception exception) {
+        return "/500.html";
     }
 }

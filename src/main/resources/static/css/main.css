@@ -1,104 +1,41 @@
-.body {
+.main {
     display: flex;
-    margin-top: 35px;
-    padding: 50px 27%;
+    flex-direction: row;
+    margin-top: 10%;
 }
 
-.explanation h1 {
-    color: #6E686A;
+.main .intro h2 {
+    margin-bottom: 5%;
+    font-size: 2.5em;
 }
 
-.explanation pre {
-    margin-top: 50px;
-    width: 80%;
-    color: #785658;
+.main .intro strong {
+    color: darkorange;
 }
 
-.explanation button {
-    margin-top: 50px;
-    padding: 12px 38px;
-    border-radius: 50px;
-    cursor: pointer;
-    background-color: #d6d2d0;
-    color: #3A3532;
-    border: none;
-    font-size: 15px;
-    font-weight: bold;
+.main .intro p {
+    margin-bottom: 1%;
+    font-size: 1.3em;
 }
 
-.explanation button:hover {
-    background-color: #785658;
+.main .intro button {
+    margin-top: 10%;
+    padding: 10px 30px;
+    background: darkorange;
     color: white;
+    border-radius: 40px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    border: none;
+    font-size: 1.4em;
+    cursor: pointer;
 }
 
-.tree img {
-    position: absolute;
-    top: 25%;
-    right: 23%;
-    opacity: 0.18;
-    z-index: -2;
-    width: 475px;
+.main .image img {
+    margin-top: 130px;
+    width: 400px;
 }
 
-@media screen and (max-width: 1130px){
-    .body {
-        padding: 50px 17%;
-    }
-
-    .explanation {
-        width: 100%;
-    }
-
-    .tree img {
-        right: 13%;
-        top: 18%;
-    }
-}
-
-@media screen and (max-width: 780px){
-    .explanation pre {
-        font-size: 14px;
-    }
-
-    .tree img {
-        right: 13%;
-        top: 30%;
-        width: 350px;
-    }
-}
-
-@media screen and (max-width: 450px){
-    .body {
-        padding: 15px 17%;
-    }
-
-    .explanation h1{
-        font-size: 23px;
-    }
-
-    .explanation pre {
-        white-space: -moz-pre-wrap;
-        white-space: -pre-wrap;
-        white-space: -o-pre-wrap;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        width: 100%;
-        font-size: 12px;
-    }
-
-    .tree img {
-        right: 13%;
-        top: 45%;
-        width: 190px;
-    }
-
-    .body {
-        margin-top: 0px;
-    }
-
-    .explanation button {
-        margin-top: 30px;
-        padding: 10px 20px;
-        font-size: 12px;
-    }
+button:hover {
+    opacity: 0.8;
 }
