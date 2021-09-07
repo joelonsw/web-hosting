@@ -65,3 +65,6 @@ spring:
       max-request-size: 10MB
 slack:
   url: slackUrl
+server:
+  compression:
+    enabled: true
