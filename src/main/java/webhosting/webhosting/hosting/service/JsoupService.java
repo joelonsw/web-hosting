@@ -2,6 +2,7 @@ package webhosting.webhosting.hosting.service;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Service;
 import webhosting.webhosting.hosting.domain.HostingFile;
 import webhosting.webhosting.hosting.domain.HostingFiles;
@@ -48,10 +49,9 @@ public class JsoupService {
     private void appendJsTag(List<HostingFile> jsFiles, Document htmlDocument) {
         for (HostingFile jsFile : jsFiles) {
             String urlJsPath = generateJsUrlPath(jsFile.getServerPath());
-            String jsTagToHtmlWithModule = "<script src=\"" + urlJsPath + "\"" + "type=\"module\">";
-            htmlDocument.selectFirst("body").child(0).before(jsTagToHtmlWithModule);
-            String jsTagToHtml = "<script src=\"" + urlJsPath + "\"" + ">";
-            htmlDocument.selectFirst("body").child(0).before(jsTagToHtml);
+            final Element body = htmlDocument.selectFirst("body");
+            body.appendElement("script").attr("src", urlJsPath).attr("type", "module");
+            body.appendElement("script").attr("src", urlJsPath);
         }
     }
 
