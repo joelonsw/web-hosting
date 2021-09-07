@@ -112,6 +112,7 @@ function showInputHtmlFile(inputFile) {
 
 function deleteHtmlFile(fileName) {
     if (htmlFile.name == fileName) {
+        htmlFileInput.value = "";
         htmlFile = null;
         htmlUpload.style.display = "none";
         htmlArea.style.display = "block";
@@ -179,6 +180,7 @@ function deleteCssFile(fileName) {
     }
 
     if (cssFiles.length == 0) {
+        cssFileInput.value = "";
         cssUpload.style.display = "none";
         cssArea.style.display = "block";
         cssArea.classList.remove("active");
@@ -231,12 +233,12 @@ function showInputJsFiles(inputFiles) {
     let jsInnerHtml = "";
     for (let i = 0; i < jsFiles.length; i++) {
         let fileName = jsFiles[i].name;
-        jsInnerHtml += "<div id=" + fileName + ">" + fileName + "<button onclick=deletejsFile('" + fileName + "')>❌</button></div>";
+        jsInnerHtml += "<div id=" + fileName + ">" + fileName + "<button onclick=deleteJsFile('" + fileName + "')>❌</button></div>";
     }
     jsUpload.innerHTML = jsInnerHtml;
 }
 
-function deletejsFile(fileName) {
+function deleteJsFile(fileName) {
     for (let i = 0; i < jsFiles.length; i++) {
         if (jsFiles[i].name == fileName) {
             let jsDom = document.getElementById(jsFiles[i].name);
@@ -246,6 +248,7 @@ function deletejsFile(fileName) {
     }
 
     if (jsFiles.length == 0) {
+        jsFileInput.value = "";
         jsUpload.style.display = "none";
         jsArea.style.display = "block";
         jsArea.classList.remove("active");
