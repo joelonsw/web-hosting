@@ -98,7 +98,7 @@ htmlFileInput.addEventListener("change", function() {
 
 function showInputHtmlFile(inputFile) {
     if (inputFile.type != "text/html") {
-        alert("HTML을 첨부해주세요");
+        alert("HTML 파일을 첨부해주세요");
         htmlArea.classList.remove("active");
         return;
     }
