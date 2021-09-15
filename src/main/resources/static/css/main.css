@@ -40,7 +40,7 @@ button:hover {
     opacity: 0.8;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1400px) {
     .main {
         flex-direction: column;
         justify-content: center;
@@ -60,7 +60,7 @@ button:hover {
 }
 
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 750px) {
     .main {
         width: 70vw;
     }

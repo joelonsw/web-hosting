@@ -33,7 +33,7 @@ body {
     color: black;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1400px) {
     .circle {
         clip-path: circle(700px at right 1400px);
     }
@@ -45,7 +45,7 @@ body {
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 750px) {
     .circle {
         clip-path: circle(200px at right 800px);
     }

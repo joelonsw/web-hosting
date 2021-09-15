@@ -115,7 +115,7 @@
 }
 
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1400px) {
     .deploy {
         width: 90%;
     }
@@ -142,7 +142,7 @@
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 750px) {
     .deploy {
         width: 85vw;
     }
