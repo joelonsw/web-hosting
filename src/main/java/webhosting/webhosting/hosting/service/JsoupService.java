@@ -49,7 +49,7 @@ public class JsoupService {
                 "\n" +
                 "  gtag('config', 'UA-207965119-1');\n" +
                 "</script>\n";
-        htmlDocument.selectFirst("head").append(googleAnalytics);
+        htmlDocument.selectFirst("head").prepend(googleAnalytics);
     }
 
     private void appendCssTag(List<HostingFile> cssFiles, Document htmlDocument) {
