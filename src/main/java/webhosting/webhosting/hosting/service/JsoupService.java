@@ -56,7 +56,7 @@ public class JsoupService {
         for (HostingFile cssFile : cssFiles) {
             String urlCssPath = generateCssUrlPath(cssFile.getServerPath());
             String cssTagToHtml = "<link rel=\"stylesheet\" href=\"" + urlCssPath + "\">";
-            htmlDocument.selectFirst("head").child(0).before(cssTagToHtml);
+            htmlDocument.selectFirst("head").append(cssTagToHtml);
         }
     }
 
