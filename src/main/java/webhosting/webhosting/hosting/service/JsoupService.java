@@ -29,6 +29,7 @@ public class JsoupService {
         final File html = new File(htmlFile.getServerPath());
         try {
             final Document htmlDocument = Jsoup.parse(html, "UTF-8");
+            appendGoogleAnalytics(htmlDocument);
             appendCssTag(cssFiles, htmlDocument);
             appendJsTag(jsFiles, htmlDocument);
             appendWaterMark(htmlDocument);
@@ -36,6 +37,19 @@ public class JsoupService {
         } catch (IOException e) {
             throw new FileReadException("파일 조회에 실패했습니다.");
         }
+    }
+
+    private void appendGoogleAnalytics(Document htmlDocument) {
+        final String googleAnalytics =
+                "<script async src=\"https://www.googletagmanager.com/gtag/js?id=UA-207965119-1\"></script>\n" +
+                "<script>\n" +
+                "  window.dataLayer = window.dataLayer || [];\n" +
+                "  function gtag(){dataLayer.push(arguments);}\n" +
+                "  gtag('js', new Date());\n" +
+                "\n" +
+                "  gtag('config', 'UA-207965119-1');\n" +
+                "</script>\n";
+        htmlDocument.selectFirst("head").append(googleAnalytics);
     }
 
     private void appendCssTag(List<HostingFile> cssFiles, Document htmlDocument) {
