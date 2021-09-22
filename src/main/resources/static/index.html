@@ -16,9 +16,6 @@
     <meta name="author" content="Joel's Easy Deploy">
     <meta name="keyword" content="Deploy, Easy Deploy, HTML, CSS, JS, Webpage, coding, free, free deploy">
     <meta name="description" content="Easy Deploy">
-    <meta http-equiv="Content-Security-Policy" content="
-    default-src 'unsafe-inline' 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com/;
-    script-src 'unsafe-inline' 'self' https://developers.kakao.com/sdk/js/kakao.min.js;">
     <title>Easy Deploy</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,6 +31,12 @@
 
 <body>
     <div class="circle"></div>
+
+    <div class="ad">
+        <ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-v8hlWs8B97o9kWh6" data-ad-width="320"
+             data-ad-height="100">
+        </ins>
+    </div>
 
     <header class="header">
         <a href="/">Easy Deploy</a>
@@ -165,6 +168,7 @@
         <button class="kakaopay" onclick="window.open('image/kakaopay.png', 'popup','width=400,height=580');">카카오페이로 후원하기</button>
     </div>
 
+    <script type="text/javascript" src="https://t1.daumcdn.net/kas/static/ba.min.js" async></script>
     <script src="/js/app.js"></script>
     <script src="/js/progressbar.js"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>

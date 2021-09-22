@@ -33,6 +33,11 @@ body {
     color: black;
 }
 
+.ad {
+    position: absolute;
+    top: 85vh;
+}
+
 @media screen and (max-width: 1400px) {
     .circle {
         clip-path: circle(700px at right 1400px);
