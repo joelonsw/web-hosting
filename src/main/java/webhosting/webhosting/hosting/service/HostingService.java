@@ -63,4 +63,8 @@ public class HostingService {
             throw new FileReadException("파일 조회에 실패했습니다.");
         }
     }
+
+    public List<String> getAllPageNames() {
+        return hostingFileRepository.findAllPageNames();
+    }
 }

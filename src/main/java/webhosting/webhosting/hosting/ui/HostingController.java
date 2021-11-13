@@ -55,4 +55,10 @@ public class HostingController {
         final String result = hostingService.getResource(pageName, resource);
         return ResponseEntity.ok().contentType(MediaTypeFactory.js()).body(result);
     }
+
+    @GetMapping(value = "/all-pages")
+    public ResponseEntity<List<String>> getAllPageNames() {
+        List<String> pageNames = hostingService.getAllPageNames();
+        return ResponseEntity.ok(pageNames);
+    }
 }

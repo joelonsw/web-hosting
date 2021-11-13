@@ -47,4 +47,16 @@ class HostingFileRepositoryTest extends HostingFileFixture {
         final HostingFile findHtmlFile = hostingFileRepository.findByPageNameAndServerPath(pageName, htmlServerPath).get();
         assertThat(findHtmlFile).isEqualTo(htmlFile);
     }
+
+    @DisplayName("저장된 파일들의 pageName을 List로 가져올 수 있다")
+    @Test
+    void findPageNames() {
+        // given
+        hostingFileRepository.save(pageName2HtmlFile);
+        hostingFileRepository.save(pageName3HtmlFile);
+
+        // when & then
+        final List<String> allPageNames = hostingFileRepository.findAllPageNames();
+        assertThat(allPageNames).contains(pageName, pageName2, pageName3);
+    }
 }
