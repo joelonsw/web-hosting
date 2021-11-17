@@ -34,7 +34,7 @@ function getPages() {
         method: 'GET'
     };
 
-    fetch("/pages.json", requestOptions)
+    fetch("/all-pages", requestOptions)
         .then(response => response.json())
         .then(result => addPages(result))
         .catch(error => console.log(error));
