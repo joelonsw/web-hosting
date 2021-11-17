@@ -1,0 +1,102 @@
+.history {
+    position: fixed;
+    z-index: 10;
+    bottom: 5%;
+    right: 5%;
+}
+
+.history .pages {
+    display: none;
+    width: 350px;
+    border-radius: 25px;
+    background-color:whitesmoke;
+    box-shadow: 6px 6px 6px grey;
+}
+
+.history .pages .pages-intro {
+    display: flex;
+    justify-content: space-between;
+    background-color:coral;
+    border-radius: 25px 25px 0px 0px;
+    padding: 22px;
+}
+
+.history .pages .pages-intro p {
+    font-size: 1.2em;
+}
+
+.history .pages .pages-intro .pages-close-btn:hover {
+    cursor: pointer;
+}
+
+.history .pages-list {
+    height: 63vh;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.history .pages-list::-webkit-scrollbar {
+    width: 5px;
+}
+
+.history .pages-list::-webkit-scrollbar-thumb {
+    background-color: rebeccapurple;
+    border-radius: 10px;
+}
+
+.history .pages-list .single-page {
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
+    font-size: 1.2em;
+    width: 90%;
+    height: 45px;
+    border-radius: 10px;
+    background-color:whitesmoke;
+    box-shadow: rgb(0 0 0 / 10%) 0px 2px 16px 1px;
+}
+
+.history .pages-list .single-page:hover {
+    background-color:rgb(0 0 0 / 1.5%);
+    cursor: pointer;
+}
+
+.history .popup {
+    display: block;
+}
+
+.history .popup:hover {
+    opacity: 0.93;
+    cursor: pointer;
+}
+
+.history .popup .popup-text {
+    background-color: white;
+    padding: 13px 50px 13px 30px;
+    border-radius: 25px;
+    align-items: center;
+    box-shadow: 6px 6px 6px grey;
+}
+
+.history .popup .popup-text p {
+    font-size: 1.2em;
+}
+
+.history .popup .popup-icon {
+    background-color: rebeccapurple;
+    font-size: 1.8em;
+    padding: 13px;
+    border-radius: 50px;
+    position: fixed;
+    bottom: calc(5% - 6.5px);
+    right: calc(5% - 30px);
+    box-shadow: 3px 3px 3px grey;
+}
+
+@media screen and (max-width: 1024px) {
+    .history {
+        display: none;
+    }
+}

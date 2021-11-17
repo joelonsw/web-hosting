@@ -8,6 +8,16 @@
     animation-fill-mode: forwards;
 }
 
+.appear-history {
+    animation: fade-in 0.2s;
+    animation-fill-mode: forwards;
+}
+
+.disappear-history {
+    animation: fade-out 0.2s;
+    animation-fill-mode: forwards;
+}
+
 @keyframes fade-in {
     from {
         opacity: 0;

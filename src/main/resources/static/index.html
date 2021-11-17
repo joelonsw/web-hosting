@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="/css/default.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/animation.css">
+    <link rel="stylesheet" href="/css/history.css">
     <link rel="stylesheet" href="/css/deploy.css">
     <link rel="stylesheet" href="/css/progressbar.css">
     <link rel="stylesheet" href="/css/result.css">
@@ -31,6 +32,26 @@
 
 <body>
     <div class="circle"></div>
+
+    <div class="history">
+        <div class="pages">
+            <div class="pages-intro">
+                <p class="pages-deployed"></p>
+                <p class="pages-close-btn">❌</p>
+            </div>
+            <div class="pages-list">
+                <a class="page-link" href="https://easy-deploy.kr/pages/pizz" target="_blank">pizz</a>
+            </div>
+        </div>
+        <div class="popup">
+            <div class="popup-text">
+                <p>배포된 페이지 보기</p>
+            </div>
+            <div class="popup-icon">
+                <p>📜</p>
+            </div>
+        </div>
+    </div>
 
     <div class="ad">
         <ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-v8hlWs8B97o9kWh6" data-ad-width="320"
@@ -169,6 +190,7 @@
 
     <script type="text/javascript" src="https://t1.daumcdn.net/kas/static/ba.min.js" async></script>
     <script src="/js/app.js"></script>
+    <script src="/js/history.js"></script>
     <script src="/js/progressbar.js"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 </body>
