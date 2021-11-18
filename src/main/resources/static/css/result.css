@@ -6,10 +6,20 @@
     justify-content: center;
 }
 
-.result h2 {
+.result .result-text-icon {
+    display: flex;
+}
+
+.result .result-text-icon .result-icon {
+    font-size: 2em;
+    margin-bottom: 5%;
+}
+
+.result .result-text-icon h2 {
     font-size: 2em;
     font-weight: 600;
     margin-bottom: 5%;
+    padding: 0 10px;
 }
 
 .result h3 {
