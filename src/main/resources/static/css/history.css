@@ -95,7 +95,7 @@
     box-shadow: 3px 3px 3px grey;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 750px) {
     .history {
         display: none;
     }
