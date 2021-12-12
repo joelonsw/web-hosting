@@ -8,6 +8,8 @@ group = 'web-hosting'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+ext['log4j2.version'] = '2.15.0'
+
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
