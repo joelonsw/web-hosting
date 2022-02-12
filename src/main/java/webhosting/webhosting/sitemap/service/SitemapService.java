@@ -12,6 +12,7 @@ import java.util.Date;
 public class SitemapService {
 
     private static final String BASE_URL = "https://easy-deploy.kr/";
+    private static final String PAGE_URL = "https://easy-deploy.kr/pages/";
     private static final String BEGIN_DOC = "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">";
     private static final String END_DOC = "</urlset>";
     private static final String CHANGE_FREQ_ALWAYS = "always";
@@ -30,7 +31,7 @@ public class SitemapService {
         sb.append(BEGIN_DOC);
         sb.append(new Sitemap(BASE_URL, now, CHANGE_FREQ_MONTHLY, "1.0"));
         for (String pageName : hostingFileRepository.findAllPageNames()) {
-            sb.append(new Sitemap(BASE_URL + pageName, now, CHANGE_FREQ_MONTHLY, "0.7"));
+            sb.append(new Sitemap(PAGE_URL + pageName, now, CHANGE_FREQ_MONTHLY, "0.7"));
         }
         sb.append(END_DOC);
         return sb.toString();
